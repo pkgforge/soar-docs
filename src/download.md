@@ -3,7 +3,7 @@
 Soar provides the ability to download arbitrary files from the internet.
 
 <div>
-    <img src="/videos/download.webp" loop />
+    <video src="/videos/download.mp4" controls></video>
 </div>
 
 ## Basic Usage

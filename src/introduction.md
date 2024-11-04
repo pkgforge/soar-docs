@@ -1,7 +1,11 @@
 # Introduction
 
 ## What is Soar?
-Soar is a Linux package manager that doesn't suck. Works with static binaries, AppImages, and other portable stuff. It's fast too.
+Soar is a fast Linux package manager that doesn't suck. Works with static binaries, AppImages, and other portable stuff.
+
+<center>
+    <img src="https://raw.githubusercontent.com/pkgforge/soar/refs/heads/main/icons/hicolor/scalable/apps/soar.svg" alt="soar" width="256"/>
+</center>
 
 ## Key Features
 
