@@ -1,0 +1,11 @@
+[book]
+authors = ["Rabindra Dhakal"]
+language = "en"
+multilingual = false
+src = "src"
+title = "soar documentation"
+
+[output.html]
+default-theme = "ayu"
+preferred-dark-theme = "ayu"
+git-repository-url = "https://github.com/QaidVoid/soar"
