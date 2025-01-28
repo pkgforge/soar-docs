@@ -2,10 +2,6 @@
 
 There are several ways to install Soar on your Linux system. Choose the method that best suits your needs.
 
-<div>
-    <video src="/videos/installation.mp4" controls></video>
-</div>
-
 ## Quick Installation
 
 ### Install Script

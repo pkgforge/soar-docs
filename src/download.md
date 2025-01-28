@@ -2,10 +2,6 @@
 
 Soar provides the ability to download arbitrary files from the internet.
 
-<div>
-    <video src="/videos/download.mp4" controls></video>
-</div>
-
 ## Basic Usage
 
 To download a file, use the `download` command or the `dl:` alias:

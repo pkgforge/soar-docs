@@ -1,11 +1,7 @@
 # Introduction
 
 ## What is Soar?
-Soar is a fast Linux package manager that doesn't suck. Works with static binaries, AppImages, and other portable stuff.
-
-<center>
-    <img src="https://raw.githubusercontent.com/pkgforge/soar/refs/heads/main/icons/hicolor/scalable/apps/soar.svg" alt="soar" width="256"/>
-</center>
+Soar is a fast, modern, bloat-free distro-independent package manager that just works. Supports static binaries, AppImages, and other portable formats.
 
 ## Key Features
 
@@ -47,14 +43,9 @@ Soar stands out from traditional package managers by offering:
 4. **Integration**
    - Comprehensive desktop environment integration across all package formats
    - Smart handling of icons, menus, and file associations
-   - Intelligent runtime fixes and compatibility layers
 
 5. **Security**
    - All packages built on secure remote CI servers with transparent build logs
    - Build logs available for auditing via `soar log <package>`
    - Cryptographic verification using BLAKE3 checksums for all downloads
    - No arbitrary script execution on your machine
-
-<div class="warning">
-    Unlike traditional package managers that run arbitrary build scripts on your system, Soar uses pre-built binaries that are compiled in transparent, auditable environments.
-</div>

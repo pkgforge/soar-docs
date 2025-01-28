@@ -2,10 +2,6 @@
 
 Soar provides several flexible ways to install packages. This guide covers all installation methods and options.
 
-<div>
-    <video src="/videos/install.mp4" controls></video>
-</div>
-
 ## Basic Installation
 
 To install a package, use either the `install` command or its aliases:
@@ -23,33 +19,32 @@ soar add <package>
 
 Example: Install the `soar` package
 ```sh
-soar install soar
+soar add soar
 ```
 
-### Installing from Specific Families
+### Installing from Specific pkg_id
 
-Packages can be organized into families (like categories). To install a package from a specific family:
+Packages can be organized into pkg_id (like family). To install a package from a specific pkg_id:
 
 ```sh
-soar install <family>/<package>
+soar add <package>#<pkg_id>
 ```
 
-Example: Install the `cat` package from the `busybox` family
+Example: Install the `cat` package from the `git.busybox.net.busybox.standalone.glibc` pkg_id. Yep, a really long pkg_id.
 ```sh
-soar install busybox/cat
+soar add cat#git.busybox.net.busybox.standalone.glibc
 ```
 
-### Installing from Specific Collections
-
-Packages can also be organized into collections. To install a package from a specific collection:
+### Installing from Specific Repository
+To install a package from a specific repository:
 
 ```sh
-soar install <package>#<collection>
+soar add <package>:<repository_name>
 ```
 
-Example: Install the `7z` package from the `bin` collection
+Example: Install the `7z` package from the `bincache` repository
 ```sh
-soar install 7z#bin
+soar add 7z:bincache
 ```
 
 ### Installing Multiple Packages
@@ -57,12 +52,25 @@ soar install 7z#bin
 To install multiple packages, list them after the command:
 
 ```sh
-soar install <package1> <package2> <package3>
+soar add <package1> <package2> <package3>
 ```
 
 Example: Install the `bat` and `7z` packages
 ```sh
-soar install bat 7z
+soar add bat 7z
+```
+
+### Installing All Packages provided by a pkg_id
+
+To install all the packages provided by a pkg_id `git.busybox.net.busybox.standalone.glibc`:
+
+```sh
+soar add '#git.busybox.net.busybox.standalone.glibc'
+```
+
+OR, if you don't know full `pkg_id` but know `cat` is in it. This will search for all pkg_ids `cat` is in and prompt you to choose one:
+```sh
+soar add 'cat#all'
 ```
 
 ### Force Installation
@@ -70,25 +78,25 @@ soar install bat 7z
 To force installation even if the package already exists, use the `--force` flag:
 
 ```sh
-soar install <package> --force
+soar add <package> --force
 ```
 
 Example: Install the `bat` package even if it already exists
 ```sh
-soar install bat --force
+soar add bat --force
 ```
 
 ### Non-Interactive Installation
 
-By default, Soar prompts for confirmation before installing packages if multiple packages are found. To skip this prompt, use the `--yes` flag:
+By default, Soar prompts for confirmation before installing packages if multiple packages are found for the given query. To skip this prompt, use the `--yes` flag:
 
 ```sh
-soar install <package> --yes
+soar add <package> --yes
 ```
 
 Example: Install the `cat` package without confirmation
 ```sh
-soar install cat --yes
+soar add cat --yes
 ```
 
 <div class="warning">
