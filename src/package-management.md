@@ -7,10 +7,9 @@ Soar provides a comprehensive set of commands for managing packages on your syst
 ### [Installing Packages](./install.md)
 Install packages using various methods:
 - Basic installation: `soar install <package>`
-- Family-specific: `soar install <family>/<package>`
-- Collection-specific: `soar install <package>#<collection>`
+- pkg_id specific: `soar install <package>#<pkg_id>`
 - Multiple packages: `soar install package1 package2`
-- Portable installation: `soar install <package> --portable`
+- Portable installation (for AppImages): `soar install <package> --portable`
 
 ### [Removing Packages](./remove.md)
 Remove installed packages:
@@ -33,14 +32,13 @@ Find packages in repositories:
 ### [Listing Packages](./list.md)
 View available and installed packages:
 - List all packages: `soar list`
-- List from collection: `soar list <collection>`
 - List installed packages: `soar info`
 
 ## Advanced Operations
 
 ### [Using Package Variants](./use.md)
-Switch between different family of installed packages:
-- Switch family: `soar use <family>/<package>`
+Switch between different variant of installed packages:
+- Switch family: `soar use <package>`
 
 ### [Running Packages](./run.md)
 Execute packages without installation:
@@ -48,4 +46,4 @@ Execute packages without installation:
 
 ### [Viewing Package Logs](./logs.md)
 View detailed package information:
-- View build logs: `soar logs <package>`
+- View build logs: `soar log <package>`
