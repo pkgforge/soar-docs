@@ -3,6 +3,7 @@
 - [Introduction](./introduction.md)
 - [Installation](./installation.md)
 - [Configuration](./configuration.md)
+- [Profiles](./profiles.md)
 - [Package Management](./package-management.md)
     - [Install Packages](./install.md)
     - [Remove Packages](./remove.md)

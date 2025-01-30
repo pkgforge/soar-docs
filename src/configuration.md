@@ -13,19 +13,21 @@ Soar uses a configuration file located at `~/.config/soar/config.toml`. If this 
 ```toml
 # Directory where Soar stores it's core database 
 db_path = "/home/qaidvoid/.local/share/soar/db"
-#  Directory where Soar stores binary symlinks
+# Directory where Soar stores binary symlinks
 bin_path = "/home/qaidvoid/.local/share/soar/bin"
-#  Directory where Soar stores repository metadata databases
+# Directory where Soar stores repository metadata databases
 repositories_path = "/home/qaidvoid/.local/share/soar/repos"
-#  Enable/disable parallel downloads
+# Enable/disable parallel downloads
 parallel = true
 # Maximum number of concurrent downloads
 parallel_limit = 4
 # Maximum number of concurrent downloads for GHCR package
 ghcr_concurrency = 8
-#  Maximum number of results to show in search
+# Maximum number of results to show in search
 search_limit = 20
-#  Default profile to use for operations
+# Default profile to use for operations
+# Do not change this after first setup, unless you want to do some manual work moving directories
+# (we'll introduce a way to change it in future)
 default_profile = "default"
 # Currently unused, this will be used to identify whether to enable cross-repo updates
 cross_repo_updates = false
