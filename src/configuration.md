@@ -12,11 +12,11 @@ Soar uses a configuration file located at `~/.config/soar/config.toml`. If this 
 
 ```toml
 # Directory where Soar stores it's core database 
-db_path = "/home/qaidvoid/.local/share/soar/db"
+db_path = "~/.local/share/soar/db"
 # Directory where Soar stores binary symlinks
-bin_path = "/home/qaidvoid/.local/share/soar/bin"
+bin_path = "~/.local/share/soar/bin"
 # Directory where Soar stores repository metadata databases
-repositories_path = "/home/qaidvoid/.local/share/soar/repos"
+repositories_path = "~/.local/share/soar/repos"
 # Enable/disable parallel downloads
 parallel = true
 # Maximum number of concurrent downloads
@@ -43,9 +43,9 @@ url = "https://meta.pkgforge.dev/pkgcache/x86_64-Linux.json"
 # Profile with name `default`
 [profile.default]
 # Root path for the profile
-root_path = "/home/qaidvoid/.local/share/soar"
+root_path = "~/.local/share/soar"
 # Packages path for the profile. Can be derived from `root_path` if not provided.
-packages_path = "/home/qaidvoid/.local/share/soar/packages"
+packages_path = "~/.local/share/soar/packages"
 ```
 
 <div class="warning">

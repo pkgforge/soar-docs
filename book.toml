@@ -8,4 +8,4 @@ title = "soar documentation"
 [output.html]
 default-theme = "ayu"
 preferred-dark-theme = "ayu"
-git-repository-url = "https://github.com/QaidVoid/soar"
+git-repository-url = "https://github.com/pkgforge/soar"

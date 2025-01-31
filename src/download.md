@@ -12,18 +12,18 @@ soar download <url>
 
 Example: Download Soar nightly
 ```sh
-soar download https://github.com/QaidVoid/soar/releases/download/nightly/soar-nightly-x86_64-linux
+soar download https://github.com/pkgforge/soar/releases/download/nightly/soar-nightly-x86_64-linux
 ```
 
 To set the output filename, use the `-o` flag:
 
 ```sh
-soar download https://github.com/QaidVoid/soar/releases/download/nightly/soar-nightly-x86_64-linux -o soar-nightly
+soar download https://github.com/pkgforge/soar/releases/download/nightly/soar-nightly-x86_64-linux -o soar-nightly
 ```
 
 Example: Download multiple files and save them to the `downloads` directory
 ```sh
-soar download https://github.com/QaidVoid/soar/releases/download/nightly/soar-nightly-x86_64-linux https://github.com/QaidVoid/soar/releases/download/nightly/soar-nightly-aarch64-linux -o downloads/
+soar download https://github.com/pkgforge/soar/releases/download/nightly/soar-nightly-x86_64-linux https://github.com/pkgforge/soar/releases/download/nightly/soar-nightly-aarch64-linux -o downloads/
 ```
 
 <div class="warning">

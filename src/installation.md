@@ -45,7 +45,7 @@ cargo install soar-cli
 
 ### From Binary Releases
 
-1. Visit the [releases page](https://github.com/QaidVoid/soar/releases)
+1. Visit the [releases page](https://github.com/pkgforge/soar/releases)
 2. Download the appropriate binary for your architecture:
    - `soar-x86_64-linux` for 64-bit Intel/AMD systems
    - `soar-aarch64-linux` for 64-bit ARM systems
@@ -72,7 +72,7 @@ To install Soar from source, you need to have Rust and Cargo installed. Follow t
 
 1. Clone the Soar repository:
 ```sh
-git clone https://github.com/QaidVoid/soar.git
+git clone https://github.com/pkgforge/soar.git
 ```
 
 2. Navigate to the Soar directory:
