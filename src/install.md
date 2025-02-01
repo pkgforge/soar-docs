@@ -60,6 +60,22 @@ Example: Install the `bat` and `7z` packages
 soar add bat 7z
 ```
 
+### Pin package to specific version
+To pin package at specific version:
+
+```sh
+soar add <package>@<version>
+```
+
+Example: Install the `soar` package and pin at version `0.5.2`.
+```sh
+soar add soar@0.5.2
+```
+
+<div class="warning">
+    Currently there is no way to unpin the package. This will be introduced gradually.
+</div>
+
 ### Installing All Packages provided by a pkg_id
 
 To install all the packages provided by a pkg_id `git.busybox.net.busybox.standalone.glibc`:
