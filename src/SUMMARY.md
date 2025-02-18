@@ -4,6 +4,7 @@
 - [Installation](./installation.md)
 - [Configuration](./configuration.md)
 - [Profiles](./profiles.md)
+- [Maintenance](./maintenance.md)
 - [Package Management](./package-management.md)
     - [Install Packages](./install.md)
     - [Remove Packages](./remove.md)
@@ -13,5 +14,3 @@
     - [Use Package](./use.md)
     - [Run Package](./run.md)
 - [Miscellaneous](./misc.md)
-    - [Download Files](./download.md)
-    - [Health Check](./health.md)
