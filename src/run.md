@@ -15,25 +15,6 @@ soar run <package>
 soar run feroxbuster
 ```
 
-## How It Works
-
-When you run a package:
-
-1. **Download and Storage**
-   - Downloads the package to Soar's managed directory
-   - Stores in a separate location from installed packages
-   - Maintains package files for future runs
-
-2. **Execution**
-   - Executes directly from Soar's managed directory
-   - Uses isolated binary path
-   - Maintains separation from system-installed versions
-
-3. **Management**
-   - Keeps package files for future use
-   - Doesn't add to system PATH
-   - No desktop environment integration
-
 <div class="warning">
     Unlike temporary execution, running a package does store the files on disk. This approach provides faster subsequent runs while maintaining system organization.
 </div>
