@@ -34,11 +34,11 @@ cross_repo_updates = false
 
 [[repositories]]
 name = "bincache"
-url = "https://meta.pkgforge.dev/bincache/x86_64-Linux.json"
+url = "https://meta.pkgforge.dev/bincache/x86_64-Linux.sdb.zstd"
 
 [[repositories]]
 name = "pkgcache"
-url = "https://meta.pkgforge.dev/pkgcache/x86_64-Linux.json"
+url = "https://meta.pkgforge.dev/pkgcache/x86_64-Linux.sdb.zstd"
 
 # Profile with name `default`
 [profile.default]
@@ -51,6 +51,14 @@ packages_path = "~/.local/share/soar/packages"
 <div class="warning">
   The `db_path`, `bin_path` and `repositories_path` is derived from the root path of `default_profile` if not provided explicitly.
 </div>
+
+### Using custom config file
+
+It is possible to use different configuration file using `-c` flag.
+
+```toml
+soar -c /path/to/config.toml [subcommand]
+```
 
 ## Troubleshooting
 
