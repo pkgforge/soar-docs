@@ -60,6 +60,15 @@ It is possible to use different configuration file using `-c` flag.
 soar -c /path/to/config.toml [subcommand]
 ```
 
+### Custom Respository Support
+
+You can fully customize the repositories Soar uses:
+
+- You can completely replace the default pkgforge repositories with your own custom repositories
+- You can use any metadata format supported by Soar (`SQLite` or `JSON` incl. `zstd` compression support)
+- You can mix and match different repository types
+
+This flexibility allows you to build a fully customized package management setup that meets your specific needs and security requirements.
 ## Troubleshooting
 
 ### Common Configuration Issues
