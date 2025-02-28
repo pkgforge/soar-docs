@@ -33,12 +33,26 @@ default_profile = "default"
 cross_repo_updates = false
 
 [[repositories]]
+# name of the repository
 name = "bincache"
+# URL of the metadata database (compressed SQLite)
 url = "https://meta.pkgforge.dev/bincache/x86_64-Linux.sdb.zstd"
+# Enable or disable desktop integration for installed packages  
+# If enabled, it creates desktop entries (shortcuts) for packages that support it
+desktop_integration = false
+# URL of the Minisign public key used for verifying package signatures
+pubkey = "https://meta.pkgforge.dev/bincache/minisign.pub"
+signature_verification = true
+# How often to synchronize metadata from the repository (e.g., every 3 hours)
+sync_interval = "3h"
 
 [[repositories]]
 name = "pkgcache"
 url = "https://meta.pkgforge.dev/pkgcache/x86_64-Linux.sdb.zstd"
+desktop_integration = true
+pubkey = "https://meta.pkgforge.dev/pkgcache/minisign.pub"
+signature_verification = true
+sync_interval = "3h"
 
 # Profile with name `default`
 [profile.default]
@@ -50,13 +64,33 @@ packages_path = "~/.local/share/soar/packages"
 
 <div class="warning">
   The `db_path`, `bin_path` and `repositories_path` is derived from the root path of `default_profile` if not provided explicitly.
+
+   Replace `x86_64` with `aarch64` if you're using `aarch64` system.
+</div>
+
+### Create config file
+
+You can create default configuration using command:
+
+```sh
+soar defconfig
+```
+
+You can also enable [external repositories](https://docs.pkgforge.dev/repositories/external) using command:
+
+```sh
+soar defconfig --external
+```
+
+<div class="warning">
+   These commands only work if you haven't created soar configuration file yet.
 </div>
 
 ### Using custom config file
 
 It is possible to use different configuration file using `-c` flag.
 
-```toml
+```sh
 soar -c /path/to/config.toml [subcommand]
 ```
 
