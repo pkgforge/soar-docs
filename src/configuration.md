@@ -86,6 +86,21 @@ soar defconfig --external
    These commands only work if you haven't created soar configuration file yet.
 </div>
 
+### View/Edit config file
+
+Soar provides a convenient way to view and edit configuration file.
+
+View config file
+```sh
+soar config
+```
+
+Edit config file. You need to have `EDITOR` environment variable set, or it'll fallback to `vi`.
+
+```sh
+soar config -e
+```
+
 ### Using custom config file
 
 It is possible to use different configuration file using `-c` flag.
@@ -94,7 +109,7 @@ It is possible to use different configuration file using `-c` flag.
 soar -c /path/to/config.toml [subcommand]
 ```
 
-### Custom Respository Support
+### Custom Repository Support
 
 You can fully customize the repositories Soar uses:
 
