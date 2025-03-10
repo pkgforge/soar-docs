@@ -68,7 +68,7 @@ This should output the version number of the installed Soar binary.
 
 ## From Source
 
-To install Soar from source, you need to have Rust and Cargo installed. Follow these steps:
+To install Soar from source, you need to have Rust and Cargo [`nightly`] installed. Follow these steps:
 
 1. Clone the Soar repository:
 ```sh
