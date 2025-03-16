@@ -5,6 +5,7 @@
 - [Configuration](./configuration.md)
 - [Profiles](./profiles.md)
 - [Maintenance](./maintenance.md)
+- [Health](./health.md)
 - [Package Management](./package-management.md)
     - [Install Packages](./install.md)
     - [Remove Packages](./remove.md)
