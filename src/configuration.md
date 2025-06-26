@@ -16,16 +16,16 @@ Soar's configuration is structured into several key areas: application-wide sett
 # The name of the default profile to use.
 default_profile = "default"
 # Path to the local cache directory.
-# Default: $XDG_DATA_HOME/soar/cache
+# Default: $SOAR_ROOT/cache
 cache_path = "~/.local/share/soar/cache"
 # Path where the Soar package database is stored.
-# Default: $XDG_DATA_HOME/soar/db
+# Default: $SOAR_ROOT/db
 db_path = "~/.local/share/soar/db"
 # Directory where binary symlinks are placed.
-# Default: $XDG_DATA_HOME/soar/bin
+# Default: $SOAR_ROOT/bin
 bin_path = "~/.local/share/soar/bin"
 # Path to the local clone of all repositories.
-# Default: $XDG_DATA_HOME/soar/packages
+# Default: $SOAR_ROOT/packages
 repositories_path = "~/.local/share/soar/repos"
 # If true, enables parallel downloading of packages.
 # Default: true
@@ -90,6 +90,16 @@ name = "pkgcache"
 url = "https://meta.pkgforge.dev/pkgcache/x86_64-Linux.sdb.zstd"
 desktop_integration = true
 pubkey = "https://meta.pkgforge.dev/pkgcache/minisign.pub"
+
+[[repositories]]
+name = "pkgforge-cargo"
+url = "https://meta.pkgforge.dev/external/pkgforge-cargo/x86_64-Linux.sdb.zstd"
+desktop_integration = false
+
+[[repositories]]
+name = "pkgforge-go"
+url = "https://meta.pkgforge.dev/external/pkgforge-go/x86_64-Linux.sdb.zstd"
+desktop_integration = false
 ```
 
 <div class="warning">
@@ -112,7 +122,7 @@ You can also enable [external repositories](https://docs.pkgforge.dev/repositori
 soar defconfig --external
 ```
 
-You can selectively enable repositories unsing command:
+You can selectively enable repositories using command:
 
 ```sh
 # only enable bincache repo
@@ -155,6 +165,7 @@ You can fully customize the repositories Soar uses:
 - You can mix and match different types of repositories.
 
 This flexibility allows you to build a fully customized package management setup that meets your specific needs and security requirements.
+
 ## Troubleshooting
 
 ### Common Configuration Issues
