@@ -84,6 +84,9 @@ signature_verification = true
 # Optional sync interval (e.g., "1h", "12h", "1d").
 # Default: "3h"
 sync_interval = "3h"
+# Optional nest sync interval
+# Default: "3h"
+nests_sync_interval: "3h"
 
 [[repositories]]
 name = "pkgcache"

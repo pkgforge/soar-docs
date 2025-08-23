@@ -14,4 +14,5 @@
     - [List Packages](./list.md)
     - [Use Package](./use.md)
     - [Run Package](./run.md)
+    - [Nests](./nest.md)
 - [Miscellaneous](./misc.md)
