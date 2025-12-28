@@ -3,7 +3,7 @@ Soar supports multiple installation profiles, allowing you to install and manage
 This is particularly useful when you want to maintain separate package sets for different purposes or environments.
 
 ## Profile Configuration
-Each profile is defined in the configuration file under the [profile.<name>] section.
+Each profile is defined in the configuration file under the `[profile.<name>]` section.
 The minimal profile configuration requires:
 
 ```toml
@@ -43,7 +43,7 @@ root_path = "~/testing/soar"
 
 <div class="warning">
   The same installation and metadata database files are shared among all profiles.
-  Do not to change existing profile names as it might break things, unless
+  Do not change existing profile names as it might break things, unless
   you haven't installed anything yet. But, you can add however many new profiles you would like to.
   You will be able to change profile names using soar CLI once profile naming feature is introduced
   which will move the packages and database accordingly as you update profile names.

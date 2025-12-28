@@ -47,6 +47,40 @@ Example: Install the `7z` package from the `bincache` repository
 soar add 7z:bincache
 ```
 
+### Installing from URL
+
+You can install packages directly from a URL:
+
+```sh
+soar add <url>
+```
+
+Example: Install an AppImage from a URL
+```sh
+soar add https://example.com/releases/myapp-1.0.0.appimage
+```
+
+#### Overriding Package Metadata
+
+When installing from a URL, you can override the package metadata using these flags:
+
+| Flag | Description |
+|------|-------------|
+| `--name` | Override the package name |
+| `--version` | Override the version |
+| `--pkg_type` | Override the package type (e.g., `appimage`, `flatimage`, `archive`) |
+| `--pkg_id` | Override the package ID |
+
+Example: Install with custom name and version
+```sh
+soar add https://example.com/app.appimage --name myapp --version 2.0.0
+```
+
+Example: Specify package type for ambiguous URLs
+```sh
+soar add https://example.com/releases/tool.tar.gz --name tool --pkg_type archive
+```
+
 ### Installing Multiple Packages
 
 To install multiple packages, list them after the command:
@@ -87,6 +121,39 @@ soar add '#git.busybox.net.busybox.standalone.glibc'
 OR, if you don't know full `pkg_id` but know `cat` is in it. This will search for all pkg_ids `cat` is in and prompt you to choose one:
 ```sh
 soar add 'cat#all'
+```
+
+### Portable Installation
+
+Portable mode allows packages to store their data in custom locations instead of the default system directories. This is useful for keeping application data self-contained or for running applications from removable media.
+
+<div class="warning">
+    Portable mode only applies to AppImages, FlatImages, RunImages, and Wrappe packages. Static binaries do not support portable mode.
+</div>
+
+To install a package in portable mode:
+
+```sh
+soar add <package> --portable
+```
+
+You can specify custom directories for different data types:
+
+| Flag | Description |
+|------|-------------|
+| `--portable-home` | Custom home directory |
+| `--portable-config` | Custom config directory |
+| `--portable-cache` | Custom cache directory |
+| `--portable-share` | Custom data/share directory |
+
+Example: Install with a custom home directory
+```sh
+soar add obsidian --portable-home ~/.obsidian-data
+```
+
+Example: Install with multiple custom directories
+```sh
+soar add myapp --portable-home ~/myapp --portable-config ~/myapp/config
 ```
 
 ### Force Installation

@@ -7,6 +7,7 @@
 - [Maintenance](./maintenance.md)
 - [Health](./health.md)
 - [Package Management](./package-management.md)
+    - [Declarative Packages](./declarative.md)
     - [Install Packages](./install.md)
     - [Remove Packages](./remove.md)
     - [Update Packages](./update.md)

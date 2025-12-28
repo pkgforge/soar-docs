@@ -2,12 +2,21 @@
 
 Soar provides a comprehensive set of commands for managing packages on your system. This section covers all package management operations available in Soar.
 
+## Declarative Management
+
+### [Declarative Packages](./declarative.md)
+Define packages in a configuration file and apply them:
+- Configuration file: `~/.config/soar/packages.toml`
+- Apply packages: `soar apply`
+- Prune unlisted: `soar apply --prune`
+
 ## Core Operations
 
 ### [Installing Packages](./install.md)
 Install packages using various methods:
 - Basic installation: `soar install <package>`
 - pkg_id specific: `soar install <package>#<pkg_id>`
+- From URL: `soar install <url>`
 - Multiple packages: `soar install package1 package2`
 - Portable installation (for AppImages): `soar install <package> --portable`
 
