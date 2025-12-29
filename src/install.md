@@ -68,8 +68,8 @@ When installing from a URL, you can override the package metadata using these fl
 |------|-------------|
 | `--name` | Override the package name |
 | `--version` | Override the version |
-| `--pkg_type` | Override the package type (e.g., `appimage`, `flatimage`, `archive`) |
-| `--pkg_id` | Override the package ID |
+| `--pkg-type` | Override the package type (e.g., `appimage`, `flatimage`, `archive`) |
+| `--pkg-id` | Override the package ID |
 
 Example: Install with custom name and version
 ```sh
@@ -78,7 +78,7 @@ soar add https://example.com/app.appimage --name myapp --version 2.0.0
 
 Example: Specify package type for ambiguous URLs
 ```sh
-soar add https://example.com/releases/tool.tar.gz --name tool --pkg_type archive
+soar add https://example.com/releases/tool.tar.gz --name tool --pkg-type archive
 ```
 
 ### Installing Multiple Packages
