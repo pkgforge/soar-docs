@@ -18,4 +18,4 @@
     - [Nests](./nest.md)
 - [Miscellaneous](./misc.md)
 - [Release Notes](./releases.md)
-    - [Soar 0.10](./releases/v0.10.0.md)
+    - [Soar 0.10](./releases/v0.10.md)
