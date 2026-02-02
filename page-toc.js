@@ -73,3 +73,17 @@
     );
     updateActive();
 })();
+
+// Close search modal when clicking the backdrop
+(function () {
+    var wrapper = document.getElementById("mdbook-search-wrapper");
+    if (!wrapper) return;
+
+    wrapper.addEventListener("click", function (e) {
+        if (e.target === wrapper) {
+            wrapper.classList.add("hidden");
+            var icon = document.getElementById("mdbook-search-toggle");
+            if (icon) icon.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
