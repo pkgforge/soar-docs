@@ -6,8 +6,8 @@ title = "soar documentation"
 description = "Documentation for Soar, a fast, modern, bloat-free package manager for Linux. Install static binaries, AppImages, and portable packages across any distro."
 
 [output.html]
-default-theme = "ayu"
-preferred-dark-theme = "ayu"
+default-theme = "nightsky"
+preferred-dark-theme = "nightsky"
 git-repository-url = "https://github.com/pkgforge/soar"
 additional-css = ["theme.css"]
 additional-js = ["mermaid-init.js", "page-toc.js"]

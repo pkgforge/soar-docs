@@ -6,7 +6,7 @@
 
 /* --- Color Variables (override Ayu theme) --- */
 
-.ayu {
+.nightsky {
     --bg: #0d1117;
     --fg: #e6edf3;
 
@@ -46,101 +46,117 @@
     --searchresults-border-color: #21262d;
     --searchresults-li-bg: #161b22;
     --search-mark-bg: rgba(210, 153, 34, 0.3);
+
+    --color-scheme: dark;
+
+    --copy-button-filter: invert(55%) sepia(5%) saturate(500%) hue-rotate(190deg) brightness(95%) contrast(90%);
+    --copy-button-filter-hover: invert(70%) sepia(40%) saturate(400%) hue-rotate(180deg) brightness(105%) contrast(100%);
+
+    --footnote-highlight: #2668a6;
+    --overlay-bg: rgba(13, 17, 23, 0.5);
+
+    --blockquote-note-color: #58a6ff;
+    --blockquote-tip-color: #3fb9a2;
+    --blockquote-important-color: #bc8cff;
+    --blockquote-warning-color: #d29922;
+    --blockquote-caution-color: #f85149;
+
+    --sidebar-header-border-color: #58a6ff;
 }
 
 
 /* --- Typography --- */
 
-.ayu .content main {
+.nightsky .content main {
     max-width: 840px;
     margin: 0 auto;
     line-height: 1.7;
 }
 
-.ayu .content main p {
+.nightsky .content main p {
     margin-bottom: 1em;
 }
 
-.ayu .content main h1,
-.ayu .content main h2,
-.ayu .content main h3,
-.ayu .content main h4 {
+.nightsky .content main h1,
+.nightsky .content main h2,
+.nightsky .content main h3,
+.nightsky .content main h4 {
     color: #e6edf3;
     margin-top: 1.8em;
     margin-bottom: 0.6em;
     letter-spacing: -0.01em;
 }
 
-.ayu .content main h1 {
+.nightsky .content main h1 {
     font-size: 2em;
     border-bottom: 1px solid #21262d;
     padding-bottom: 0.35em;
 }
 
-.ayu .content main h2 {
+.nightsky .content main h2 {
     font-size: 1.5em;
     border-bottom: 1px solid #21262d;
     padding-bottom: 0.3em;
 }
 
-.ayu .content main h3 {
+.nightsky .content main h3 {
     font-size: 1.25em;
 }
 
-.ayu .content main h4 {
+.nightsky .content main h4 {
     font-size: 1.1em;
     color: #8b949e;
 }
 
-.ayu code {
+.nightsky code {
     font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Source Code Pro", monospace;
     font-size: 0.875em;
 }
 
-.ayu :not(pre) > code {
+.nightsky :not(pre) > code {
     color: #f0883e;
     background: rgba(240, 136, 62, 0.1);
     border-radius: 4px;
     padding: 0.15em 0.35em;
 }
 
-.ayu .content main ul,
-.ayu .content main ol {
+.nightsky .content main ul,
+.nightsky .content main ol {
     margin-bottom: 1em;
 }
 
-.ayu .content main li {
+.nightsky .content main li {
     margin-bottom: 0.3em;
 }
 
 
 /* --- Sidebar --- */
 
-.ayu .sidebar {
+.nightsky .sidebar {
     background: #161b22;
     border-right: 1px solid #21262d;
     scrollbar-width: thin;
     scrollbar-color: #30363d transparent;
 }
 
-.ayu .sidebar .sidebar-scrollbox {
+.nightsky .sidebar .sidebar-scrollbox {
     padding: 10px 0;
 }
 
-.ayu .sidebar .sidebar-scrollbox::-webkit-scrollbar {
+.nightsky .sidebar .sidebar-scrollbox::-webkit-scrollbar {
     width: 6px;
 }
 
-.ayu .sidebar .sidebar-scrollbox::-webkit-scrollbar-thumb {
+.nightsky .sidebar .sidebar-scrollbox::-webkit-scrollbar-thumb {
     background: #30363d;
     border-radius: 3px;
 }
 
-.ayu .sidebar .sidebar-scrollbox::-webkit-scrollbar-track {
+.nightsky .sidebar .sidebar-scrollbox::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.ayu .sidebar ol.chapter li a {
+.nightsky .sidebar ol.chapter li a {
     color: #8b949e;
     padding: 5px 20px;
     display: block;
@@ -148,22 +164,22 @@
     transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 }
 
-.ayu .sidebar ol.chapter li a:hover {
+.nightsky .sidebar ol.chapter li a:hover {
     color: #e6edf3;
     text-decoration: none;
 }
 
-.ayu .sidebar ol.chapter li.chapter-item.expanded > a,
-.ayu .sidebar ol.chapter li a.active {
+.nightsky .sidebar ol.chapter li.chapter-item.expanded > a,
+.nightsky .sidebar ol.chapter li a.active {
     color: #58a6ff;
     border-left-color: #58a6ff;
 }
 
-.ayu .sidebar .on-this-page {
+.nightsky .sidebar .on-this-page {
     display: none;
 }
 
-.ayu .sidebar-resize-handle {
+.nightsky .sidebar-resize-handle {
     background-color: #21262d;
     width: 2px;
 }
@@ -171,7 +187,7 @@
 
 /* --- Tables --- */
 
-.ayu table {
+.nightsky table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -181,11 +197,11 @@
     margin: 1.2em 0;
 }
 
-.ayu table thead tr {
+.nightsky table thead tr {
     background: #161b22;
 }
 
-.ayu table thead th {
+.nightsky table thead th {
     color: #e6edf3;
     font-weight: 600;
     padding: 10px 16px;
@@ -193,27 +209,27 @@
     text-align: left;
 }
 
-.ayu table tbody td {
+.nightsky table tbody td {
     padding: 8px 16px;
     border-bottom: 1px solid #21262d;
 }
 
-.ayu table tbody tr:last-child td {
+.nightsky table tbody tr:last-child td {
     border-bottom: none;
 }
 
-.ayu table tbody tr:nth-child(even) {
+.nightsky table tbody tr:nth-child(even) {
     background: rgba(22, 27, 34, 0.5);
 }
 
-.ayu table tbody tr:hover {
+.nightsky table tbody tr:hover {
     background: #1c2128;
 }
 
 
 /* --- Code Blocks --- */
 
-.ayu pre {
+.nightsky pre {
     background: #161b22;
     border: 1px solid #21262d;
     border-radius: 8px;
@@ -222,21 +238,21 @@
     position: relative;
 }
 
-.ayu pre code {
+.nightsky pre code {
     font-size: 0.85em;
     line-height: 1.55;
 }
 
-.ayu .content main .buttons {
+.nightsky .content main .buttons {
     opacity: 0;
     transition: opacity 0.2s ease;
 }
 
-.ayu .content main pre:hover .buttons {
+.nightsky .content main pre:hover .buttons {
     opacity: 1;
 }
 
-.ayu .content main .buttons button {
+.nightsky .content main .buttons button {
     background: #1c2128;
     border: 1px solid #30363d;
     border-radius: 6px;
@@ -245,19 +261,19 @@
     padding: 4px 8px;
 }
 
-.ayu .content main .buttons button:hover {
+.nightsky .content main .buttons button:hover {
     color: #e6edf3;
     background: #30363d;
 }
 
-.ayu .content main .buttons .fa::before {
+.nightsky .content main .buttons .fa::before {
     color: inherit;
 }
 
 
 /* --- Search Bar --- */
 
-.ayu #searchbar {
+.nightsky #searchbar {
     background: #161b22;
     border: 1px solid #30363d;
     border-radius: 6px;
@@ -266,37 +282,37 @@
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.ayu #searchbar:focus {
+.nightsky #searchbar:focus {
     border-color: #58a6ff;
     box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
     outline: none;
 }
 
-.ayu .searchresults-outer .search-results .searchresults-header {
+.nightsky .searchresults-outer .search-results .searchresults-header {
     color: #8b949e;
 }
 
-.ayu .search-results .searchresults-outer li {
+.nightsky .search-results .searchresults-outer li {
     border-bottom-color: #21262d;
 }
 
 
 /* --- Menu Bar --- */
 
-.ayu #menu-bar {
+.nightsky #menu-bar {
     border-bottom: 1px solid #21262d;
     background: #0d1117;
 }
 
-.ayu #menu-bar i {
+.nightsky #menu-bar i {
     color: #8b949e;
 }
 
-.ayu #menu-bar i:hover {
+.nightsky #menu-bar i:hover {
     color: #e6edf3;
 }
 
-.ayu .theme-popup {
+.nightsky .theme-popup {
     background: #161b22;
     border: 1px solid #30363d;
     border-radius: 8px;
@@ -304,18 +320,18 @@
     overflow: hidden;
 }
 
-.ayu .theme-popup .theme:hover {
+.nightsky .theme-popup .theme:hover {
     background: #1c2128;
 }
 
-.ayu .theme-popup .theme.selected {
+.nightsky .theme-popup .theme.selected {
     color: #58a6ff;
 }
 
 
 /* --- Blockquotes --- */
 
-.ayu blockquote {
+.nightsky blockquote {
     background: rgba(56, 139, 253, 0.08);
     border: 1px solid #21262d;
     border-left: 4px solid #58a6ff;
@@ -325,42 +341,42 @@
     color: #8b949e;
 }
 
-.ayu blockquote p {
+.nightsky blockquote p {
     margin: 0.4em 0;
 }
 
-.ayu blockquote p:first-child {
+.nightsky blockquote p:first-child {
     margin-top: 0;
 }
 
-.ayu blockquote p:last-child {
+.nightsky blockquote p:last-child {
     margin-bottom: 0;
 }
 
 /* Warning-style blockquotes (contain "warning" or "[!WARNING]") */
-.ayu blockquote.warning,
-.ayu .warning blockquote {
+.nightsky blockquote.warning,
+.nightsky .warning blockquote {
     border-left-color: #d29922;
     background: rgba(210, 153, 34, 0.08);
 }
 
 /* Caution-style blockquotes */
-.ayu blockquote.caution,
-.ayu .caution blockquote {
+.nightsky blockquote.caution,
+.nightsky .caution blockquote {
     border-left-color: #f85149;
     background: rgba(248, 81, 73, 0.08);
 }
 
 /* Tip-style blockquotes */
-.ayu blockquote.tip,
-.ayu .tip blockquote {
+.nightsky blockquote.tip,
+.nightsky .tip blockquote {
     border-left-color: #3fb9a2;
     background: rgba(63, 185, 162, 0.08);
 }
 
 /* Important-style blockquotes */
-.ayu blockquote.important,
-.ayu .important blockquote {
+.nightsky blockquote.important,
+.nightsky .important blockquote {
     border-left-color: #bc8cff;
     background: rgba(188, 140, 255, 0.08);
 }
@@ -368,7 +384,7 @@
 
 /* --- Horizontal Rules --- */
 
-.ayu hr {
+.nightsky hr {
     border: none;
     border-top: 1px solid #21262d;
     margin: 2em 0;
@@ -377,7 +393,7 @@
 
 /* --- Selection --- */
 
-.ayu ::selection {
+.nightsky ::selection {
     background: rgba(88, 166, 255, 0.25);
     color: #e6edf3;
 }
@@ -392,26 +408,26 @@ html {
 
 /* --- Navigation Arrows --- */
 
-.ayu .nav-chapters {
+.nightsky .nav-chapters {
     color: #8b949e;
     transition: color 0.15s ease;
 }
 
-.ayu .nav-chapters:hover {
+.nightsky .nav-chapters:hover {
     color: #58a6ff;
 }
 
 
 /* --- Page Footer (edit link) --- */
 
-.ayu .content footer {
+.nightsky .content footer {
     border-top: 1px solid #21262d;
     margin-top: 3em;
     padding-top: 1em;
     color: #6e7681;
 }
 
-.ayu .content footer a {
+.nightsky .content footer a {
     color: #58a6ff;
 }
 
@@ -419,47 +435,47 @@ html {
 /* --- Responsive --- */
 
 @media (max-width: 768px) {
-    .ayu .content main {
+    .nightsky .content main {
         line-height: 1.6;
     }
 
-    .ayu .sidebar {
+    .nightsky .sidebar {
         box-shadow: 4px 0 16px rgba(0, 0, 0, 0.5);
     }
 
-    .ayu table {
+    .nightsky table {
         font-size: 0.9em;
     }
 
-    .ayu table thead th,
-    .ayu table tbody td {
+    .nightsky table thead th,
+    .nightsky table tbody td {
         padding: 6px 10px;
     }
 
-    .ayu pre {
+    .nightsky pre {
         padding: 12px;
         border-radius: 6px;
     }
 
-    .ayu pre code {
+    .nightsky pre code {
         font-size: 0.8em;
     }
 
-    .ayu .sidebar ol.chapter li a {
+    .nightsky .sidebar ol.chapter li a {
         padding: 8px 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .ayu .content main h1 {
+    .nightsky .content main h1 {
         font-size: 1.6em;
     }
 
-    .ayu .content main h2 {
+    .nightsky .content main h2 {
         font-size: 1.3em;
     }
 
-    .ayu table {
+    .nightsky table {
         font-size: 0.85em;
         display: block;
         overflow-x: auto;
@@ -473,9 +489,9 @@ html {
     display: none;
     position: fixed;
     top: 80px;
-    right: 1.5em;
+    right: 7em;
     width: 200px;
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 160px);
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #30363d transparent;
@@ -527,7 +543,7 @@ html {
     border-left-color: #58a6ff;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1920px) {
     .page-toc {
         display: block;
     }
