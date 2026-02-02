@@ -150,15 +150,13 @@
 
 .ayu .sidebar ol.chapter li a:hover {
     color: #e6edf3;
-    background-color: #1c2128;
     text-decoration: none;
 }
 
 .ayu .sidebar ol.chapter li.chapter-item.expanded > a,
 .ayu .sidebar ol.chapter li a.active {
     color: #58a6ff;
-    border-left: 3px solid #58a6ff;
-    background-color: rgba(88, 166, 255, 0.06);
+    border-left-color: #58a6ff;
 }
 
 .ayu .sidebar .on-this-page {
@@ -319,6 +317,7 @@
 
 .ayu blockquote {
     background: rgba(56, 139, 253, 0.08);
+    border: 1px solid #21262d;
     border-left: 4px solid #58a6ff;
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
