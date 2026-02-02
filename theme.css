@@ -161,6 +161,10 @@
     background-color: rgba(88, 166, 255, 0.06);
 }
 
+.ayu .sidebar .on-this-page {
+    display: none;
+}
+
 .ayu .sidebar-resize-handle {
     background-color: #21262d;
     width: 2px;
@@ -460,6 +464,73 @@ html {
         font-size: 0.85em;
         display: block;
         overflow-x: auto;
+    }
+}
+
+
+/* --- Page TOC (right sidebar) --- */
+
+.page-toc {
+    display: none;
+    position: fixed;
+    top: 80px;
+    right: 1.5em;
+    width: 200px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #30363d transparent;
+    z-index: 10;
+}
+
+.page-toc-title {
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 0.6em;
+    margin-bottom: 0.4em;
+    border-bottom: 1px solid #21262d;
+}
+
+.page-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-toc li {
+    margin: 0;
+}
+
+.page-toc li.toc-indent {
+    padding-left: 0.8em;
+}
+
+.page-toc a {
+    display: block;
+    padding: 3px 0 3px 10px;
+    font-size: 0.8em;
+    color: #6e7681;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    line-height: 1.4;
+}
+
+.page-toc a:hover {
+    color: #e6edf3;
+}
+
+.page-toc a.active {
+    color: #58a6ff;
+    border-left-color: #58a6ff;
+}
+
+@media (min-width: 1440px) {
+    .page-toc {
+        display: block;
     }
 }
 
