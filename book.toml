@@ -10,6 +10,7 @@ default-theme = "ayu"
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/pkgforge/soar"
 additional-css = ["theme.css"]
+additional-js = ["mermaid-init.js"]
 input-404 = "404.md"
 no-section-label = true
 

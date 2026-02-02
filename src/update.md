@@ -135,6 +135,25 @@ When you update a package, Soar:
 6. Updates symlinks and database entries
 7. Removes the old version (if successful)
 
+<pre class="mermaid">
+graph TD
+    A["soar update"] --> B["Check source repository"]
+    B --> C{"Newer version<br/>available?"}
+    C -->|"No"| D["Skip — already up to date"]
+    C -->|"Yes"| E["Verify signatures & checksums"]
+    E --> F["Download new version"]
+    F --> G["Backup current installation"]
+    G --> H["Extract & install new version"]
+    H --> I["Update symlinks & database"]
+    I --> J{"Success?"}
+    J -->|"Yes"| K["Remove old version"]
+    J -->|"No"| L["Restore from backup"]
+
+    style D fill:#1c2128,stroke:#8b949e,color:#e6edf3
+    style K fill:#1c2128,stroke:#3fb9a2,color:#e6edf3
+    style L fill:#1c2128,stroke:#f85149,color:#e6edf3
+</pre>
+
 ### Backup and Recovery
 
 Soar maintains backups during updates:

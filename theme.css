@@ -464,6 +464,24 @@ html {
 }
 
 
+/* --- Mermaid Diagrams --- */
+
+pre.mermaid {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 1.5em;
+    margin: 1.5em 0;
+    text-align: center;
+    overflow-x: auto;
+}
+
+pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+
 /* --- Landing Page --- */
 
 .landing-hero {

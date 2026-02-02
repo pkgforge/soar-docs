@@ -62,6 +62,21 @@ Package: cat
 
 ## How the Use Command Works
 
+<pre class="mermaid">
+graph TD
+    A["soar use python"] --> B{"Multiple variants<br/>installed?"}
+    B -->|"No"| C["Exit — nothing to switch"]
+    B -->|"Yes"| D["Display installed variants"]
+    D --> E["User selects variant"]
+    E --> F["Overwrite primary binary symlink"]
+    F --> G["Overwrite all provides symlinks<br/>(cat, ls, chmod, etc.)"]
+    G --> H["Mark selected variant active in DB"]
+    H --> I["Mark other variants inactive"]
+
+    style C fill:#1c2128,stroke:#8b949e,color:#e6edf3
+    style I fill:#1c2128,stroke:#3fb9a2,color:#e6edf3
+</pre>
+
 ### Step 1: List Installed Variants
 
 When you run `soar use <package>`, Soar displays all installed variants:

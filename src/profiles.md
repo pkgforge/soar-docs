@@ -25,6 +25,19 @@ Soar resolves paths in this order (highest priority first):
 2. **Global configuration overrides** (`bin_path`, `db_path`, `cache_path`, etc. in the root of `config.toml`)
 3. **Profile-specific paths** (computed from `root_path`)
 
+<pre class="mermaid">
+graph TD
+    A["Path requested<br/>(e.g. bin_path)"] --> B{"Environment variable set?<br/>(e.g. SOAR_BIN)"}
+    B -->|Yes| C["Use env var value"]
+    B -->|No| D{"Global config override set?<br/>(e.g. bin_path in config.toml)"}
+    D -->|Yes| E["Use global config value"]
+    D -->|No| F["Compute from profile<br/>root_path + /bin"]
+
+    style C fill:#1c2128,stroke:#3fb9a2,color:#e6edf3
+    style E fill:#1c2128,stroke:#d29922,color:#e6edf3
+    style F fill:#1c2128,stroke:#58a6ff,color:#e6edf3
+</pre>
+
 > **Important:** Global configuration paths and environment variables take precedence over profile-computed paths. This means if you set `bin_path` in the global config or `SOAR_BIN` environment variable, it will be used instead of the profile's `<root_path>/bin`.
 
 ### Computed Paths

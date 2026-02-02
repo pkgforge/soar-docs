@@ -111,6 +111,21 @@ When you remove a package, Soar performs cleanup operations:
 7. **Cache Handling** - Download cache preserved (use `soar clean --cache` to reclaim)
 8. **Database Cleanup** - Removes package record and portable entries
 
+<pre class="mermaid">
+graph TD
+    A["soar remove pkg"] --> B["Run pre-remove hook"]
+    B --> C["Remove binary symlinks<br/>(~/.local/share/soar/bin)"]
+    C --> D["Remove provides symlinks"]
+    D --> E["Remove desktop entries<br/>(~/.local/share/applications)"]
+    E --> F["Remove icon symlinks<br/>(~/.local/share/icons)"]
+    F --> G["Remove package directory<br/>(~/.local/share/soar/packages)"]
+    G --> H["Clean database records"]
+    H --> I["Done ✓"]
+
+    style A fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style I fill:#1c2128,stroke:#3fb9a2,color:#e6edf3
+</pre>
+
 **Example Output:**
 ```
 Removed 7z#upstream.release:official (24.08)

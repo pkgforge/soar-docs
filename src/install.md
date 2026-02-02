@@ -2,6 +2,32 @@
 
 Soar provides several flexible ways to install packages. This guide covers all installation methods and options.
 
+## Installation Flow
+
+<pre class="mermaid">
+graph TD
+    A["soar install &lt;input&gt;"] --> B{"Input type?"}
+    B -->|"package name"| C["Search repositories"]
+    B -->|"name#pkg_id"| D["Search specific family"]
+    B -->|"name:repo"| E["Search specific repo"]
+    B -->|"URL"| F["Download from URL"]
+
+    C --> G{"Multiple matches?"}
+    D --> G
+    E --> H["Download & Install"]
+    F --> H
+
+    G -->|"Yes"| I{"--yes flag?"}
+    G -->|"No"| H
+    I -->|"Yes"| J["Select first match"]
+    I -->|"No"| K["Prompt user to select"]
+    J --> H
+    K --> H
+
+    style A fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style H fill:#1c2128,stroke:#3fb9a2,color:#e6edf3
+</pre>
+
 ## Basic Installation
 
 To install a package, use either the `install` command or its aliases:
