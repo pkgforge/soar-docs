@@ -1,0 +1,464 @@
+/* ============================================================
+   Nightsky Theme for Soar Documentation
+   A dark theme inspired by twilight skies - deep charcoal
+   background, cyan/blue accents, amber highlights.
+   ============================================================ */
+
+/* --- Color Variables (override Ayu theme) --- */
+
+.ayu {
+    --bg: #0d1117;
+    --fg: #e6edf3;
+
+    --sidebar-bg: #161b22;
+    --sidebar-fg: #8b949e;
+    --sidebar-non-existant: #6e7681;
+    --sidebar-active: #58a6ff;
+    --sidebar-spacer: #21262d;
+
+    --scrollbar: #30363d;
+
+    --icons: #8b949e;
+    --icons-hover: #e6edf3;
+
+    --links: #58a6ff;
+
+    --inline-code-color: #f0883e;
+
+    --theme-popup-bg: #161b22;
+    --theme-popup-border: #30363d;
+    --theme-hover: #1c2128;
+
+    --quote-bg: rgba(56, 139, 253, 0.08);
+    --quote-border: #58a6ff;
+
+    --warning-border: #d29922;
+
+    --table-border-color: #21262d;
+    --table-header-bg: #161b22;
+    --table-alternate-bg: rgba(22, 27, 34, 0.5);
+
+    --searchbar-border-color: #30363d;
+    --searchbar-bg: #161b22;
+    --searchbar-fg: #e6edf3;
+    --searchbar-shadow-color: rgba(88, 166, 255, 0.2);
+    --searchresults-header-fg: #8b949e;
+    --searchresults-border-color: #21262d;
+    --searchresults-li-bg: #161b22;
+    --search-mark-bg: rgba(210, 153, 34, 0.3);
+}
+
+
+/* --- Typography --- */
+
+.ayu .content main {
+    max-width: 840px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.ayu .content main p {
+    margin-bottom: 1em;
+}
+
+.ayu .content main h1,
+.ayu .content main h2,
+.ayu .content main h3,
+.ayu .content main h4 {
+    color: #e6edf3;
+    margin-top: 1.8em;
+    margin-bottom: 0.6em;
+    letter-spacing: -0.01em;
+}
+
+.ayu .content main h1 {
+    font-size: 2em;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 0.35em;
+}
+
+.ayu .content main h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 0.3em;
+}
+
+.ayu .content main h3 {
+    font-size: 1.25em;
+}
+
+.ayu .content main h4 {
+    font-size: 1.1em;
+    color: #8b949e;
+}
+
+.ayu code {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Source Code Pro", monospace;
+    font-size: 0.875em;
+}
+
+.ayu :not(pre) > code {
+    color: #f0883e;
+    background: rgba(240, 136, 62, 0.1);
+    border-radius: 4px;
+    padding: 0.15em 0.35em;
+}
+
+.ayu .content main ul,
+.ayu .content main ol {
+    margin-bottom: 1em;
+}
+
+.ayu .content main li {
+    margin-bottom: 0.3em;
+}
+
+
+/* --- Sidebar --- */
+
+.ayu .sidebar {
+    background: #161b22;
+    border-right: 1px solid #21262d;
+    scrollbar-width: thin;
+    scrollbar-color: #30363d transparent;
+}
+
+.ayu .sidebar .sidebar-scrollbox {
+    padding: 10px 0;
+}
+
+.ayu .sidebar .sidebar-scrollbox::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ayu .sidebar .sidebar-scrollbox::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 3px;
+}
+
+.ayu .sidebar .sidebar-scrollbox::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ayu .sidebar ol.chapter li a {
+    color: #8b949e;
+    padding: 5px 20px;
+    display: block;
+    border-left: 3px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ayu .sidebar ol.chapter li a:hover {
+    color: #e6edf3;
+    background-color: #1c2128;
+    text-decoration: none;
+}
+
+.ayu .sidebar ol.chapter li.chapter-item.expanded > a,
+.ayu .sidebar ol.chapter li a.active {
+    color: #58a6ff;
+    border-left: 3px solid #58a6ff;
+    background-color: rgba(88, 166, 255, 0.06);
+}
+
+.ayu .sidebar-resize-handle {
+    background-color: #21262d;
+    width: 2px;
+}
+
+
+/* --- Tables --- */
+
+.ayu table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.2em 0;
+}
+
+.ayu table thead tr {
+    background: #161b22;
+}
+
+.ayu table thead th {
+    color: #e6edf3;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-bottom: 1px solid #21262d;
+    text-align: left;
+}
+
+.ayu table tbody td {
+    padding: 8px 16px;
+    border-bottom: 1px solid #21262d;
+}
+
+.ayu table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.ayu table tbody tr:nth-child(even) {
+    background: rgba(22, 27, 34, 0.5);
+}
+
+.ayu table tbody tr:hover {
+    background: #1c2128;
+}
+
+
+/* --- Code Blocks --- */
+
+.ayu pre {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 1.2em 0;
+    position: relative;
+}
+
+.ayu pre code {
+    font-size: 0.85em;
+    line-height: 1.55;
+}
+
+.ayu .content main .buttons {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.ayu .content main pre:hover .buttons {
+    opacity: 1;
+}
+
+.ayu .content main .buttons button {
+    background: #1c2128;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #8b949e;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.ayu .content main .buttons button:hover {
+    color: #e6edf3;
+    background: #30363d;
+}
+
+.ayu .content main .buttons .fa::before {
+    color: inherit;
+}
+
+
+/* --- Search Bar --- */
+
+.ayu #searchbar {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #e6edf3;
+    padding: 8px 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ayu #searchbar:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
+    outline: none;
+}
+
+.ayu .searchresults-outer .search-results .searchresults-header {
+    color: #8b949e;
+}
+
+.ayu .search-results .searchresults-outer li {
+    border-bottom-color: #21262d;
+}
+
+
+/* --- Menu Bar --- */
+
+.ayu #menu-bar {
+    border-bottom: 1px solid #21262d;
+    background: #0d1117;
+}
+
+.ayu #menu-bar i {
+    color: #8b949e;
+}
+
+.ayu #menu-bar i:hover {
+    color: #e6edf3;
+}
+
+.ayu .theme-popup {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.ayu .theme-popup .theme:hover {
+    background: #1c2128;
+}
+
+.ayu .theme-popup .theme.selected {
+    color: #58a6ff;
+}
+
+
+/* --- Blockquotes --- */
+
+.ayu blockquote {
+    background: rgba(56, 139, 253, 0.08);
+    border-left: 4px solid #58a6ff;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 1.2em 0;
+    color: #8b949e;
+}
+
+.ayu blockquote p {
+    margin: 0.4em 0;
+}
+
+.ayu blockquote p:first-child {
+    margin-top: 0;
+}
+
+.ayu blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Warning-style blockquotes (contain "warning" or "[!WARNING]") */
+.ayu blockquote.warning,
+.ayu .warning blockquote {
+    border-left-color: #d29922;
+    background: rgba(210, 153, 34, 0.08);
+}
+
+/* Caution-style blockquotes */
+.ayu blockquote.caution,
+.ayu .caution blockquote {
+    border-left-color: #f85149;
+    background: rgba(248, 81, 73, 0.08);
+}
+
+/* Tip-style blockquotes */
+.ayu blockquote.tip,
+.ayu .tip blockquote {
+    border-left-color: #3fb9a2;
+    background: rgba(63, 185, 162, 0.08);
+}
+
+/* Important-style blockquotes */
+.ayu blockquote.important,
+.ayu .important blockquote {
+    border-left-color: #bc8cff;
+    background: rgba(188, 140, 255, 0.08);
+}
+
+
+/* --- Horizontal Rules --- */
+
+.ayu hr {
+    border: none;
+    border-top: 1px solid #21262d;
+    margin: 2em 0;
+}
+
+
+/* --- Selection --- */
+
+.ayu ::selection {
+    background: rgba(88, 166, 255, 0.25);
+    color: #e6edf3;
+}
+
+
+/* --- Smooth Scroll --- */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* --- Navigation Arrows --- */
+
+.ayu .nav-chapters {
+    color: #8b949e;
+    transition: color 0.15s ease;
+}
+
+.ayu .nav-chapters:hover {
+    color: #58a6ff;
+}
+
+
+/* --- Page Footer (edit link) --- */
+
+.ayu .content footer {
+    border-top: 1px solid #21262d;
+    margin-top: 3em;
+    padding-top: 1em;
+    color: #6e7681;
+}
+
+.ayu .content footer a {
+    color: #58a6ff;
+}
+
+
+/* --- Responsive --- */
+
+@media (max-width: 768px) {
+    .ayu .content main {
+        line-height: 1.6;
+    }
+
+    .ayu .sidebar {
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .ayu table {
+        font-size: 0.9em;
+    }
+
+    .ayu table thead th,
+    .ayu table tbody td {
+        padding: 6px 10px;
+    }
+
+    .ayu pre {
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    .ayu pre code {
+        font-size: 0.8em;
+    }
+
+    .ayu .sidebar ol.chapter li a {
+        padding: 8px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ayu .content main h1 {
+        font-size: 1.6em;
+    }
+
+    .ayu .content main h2 {
+        font-size: 1.3em;
+    }
+
+    .ayu table {
+        font-size: 0.85em;
+        display: block;
+        overflow-x: auto;
+    }
+}

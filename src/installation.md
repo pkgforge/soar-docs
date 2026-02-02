@@ -83,7 +83,7 @@ cd soar
 cargo install --path .
 ```
 
-Requires Rust 1.88.0+. See [contributing guide](https://github.com/pkgforge/soar/blob/main/CONTRIBUTING.md) for development setup.
+Requires Rust 1.88.0+.
 
 ## PATH Configuration
 
