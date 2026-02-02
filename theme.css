@@ -462,3 +462,231 @@ html {
         overflow-x: auto;
     }
 }
+
+
+/* --- Landing Page --- */
+
+.landing-hero {
+    text-align: center;
+    padding: 3em 1em 2em;
+    margin-bottom: 1em;
+}
+
+.landing-hero .landing-title {
+    font-size: 3.5em;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.15em;
+    border: none;
+    padding: 0;
+    background: linear-gradient(135deg, #58a6ff 0%, #3fb9a2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.landing-hero .landing-tagline {
+    font-size: 1.4em;
+    color: #e6edf3;
+    margin: 0 0 0.5em;
+    font-weight: 500;
+}
+
+.landing-hero .landing-subtitle {
+    font-size: 1.05em;
+    color: #8b949e;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.landing-install {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 1.2em 1.5em;
+    margin: 0 auto 2em;
+    max-width: 640px;
+}
+
+.landing-install p {
+    color: #8b949e;
+    font-size: 0.9em;
+    margin: 0.8em 0 0.4em;
+}
+
+.landing-install p:first-child {
+    margin-top: 0;
+}
+
+.landing-install pre {
+    margin: 0.5em 0;
+    border: none;
+    background: #0d1117;
+}
+
+.landing-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 1.5em 0;
+}
+
+.feature-card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 1.2em 1.4em;
+    transition: border-color 0.15s ease;
+}
+
+.feature-card:hover {
+    border-color: #30363d;
+}
+
+.feature-card h3 {
+    color: #e6edf3;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0 0 0.5em;
+    border: none;
+    padding: 0;
+}
+
+.feature-card p {
+    color: #8b949e;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.feature-card a {
+    color: #58a6ff;
+}
+
+.landing-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 1.5em 0;
+}
+
+.nav-card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 1.2em 1.4em;
+}
+
+.nav-card h4 {
+    color: #e6edf3;
+    font-size: 0.95em;
+    font-weight: 600;
+    margin: 0 0 0.6em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #21262d;
+}
+
+.nav-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-card li {
+    margin: 0.35em 0;
+}
+
+.nav-card a {
+    color: #8b949e;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.nav-card a:hover {
+    color: #58a6ff;
+}
+
+
+/* --- 404 Page --- */
+
+.page-404 {
+    text-align: center;
+    padding: 6em 1em 4em;
+}
+
+.page-404 h1 {
+    font-size: 6em;
+    font-weight: 800;
+    margin: 0 0 0.1em;
+    border: none;
+    padding: 0;
+    background: linear-gradient(135deg, #30363d 0%, #21262d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-404 .msg {
+    font-size: 1.2em;
+    color: #8b949e;
+    margin-bottom: 2em;
+}
+
+.page-404 .actions {
+    margin-top: 1.5em;
+}
+
+.page-404 .actions a {
+    color: #58a6ff;
+}
+
+.page-404 .actions p {
+    margin: 0.5em 0;
+    color: #6e7681;
+    font-size: 0.95em;
+}
+
+
+/* --- Landing Page Responsive --- */
+
+@media (max-width: 768px) {
+    .landing-hero {
+        padding: 2em 1em 1.5em;
+    }
+
+    .landing-hero .landing-title {
+        font-size: 2.5em;
+    }
+
+    .landing-hero .landing-tagline {
+        font-size: 1.15em;
+    }
+
+    .landing-install {
+        padding: 1em;
+    }
+
+    .landing-features {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-hero .landing-title {
+        font-size: 2em;
+    }
+
+    .landing-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .page-404 h1 {
+        font-size: 4em;
+    }
+}

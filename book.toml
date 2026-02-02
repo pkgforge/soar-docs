@@ -3,9 +3,20 @@ authors = ["Rabindra Dhakal"]
 language = "en"
 src = "src"
 title = "soar documentation"
+description = "Documentation for Soar, a fast, modern, bloat-free package manager for Linux. Install static binaries, AppImages, and portable packages across any distro."
 
 [output.html]
 default-theme = "ayu"
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/pkgforge/soar"
 additional-css = ["theme.css"]
+input-404 = "404.md"
+no-section-label = true
+
+[output.html.redirect]
+"/setup.html" = "/installation.html"
+"/config.html" = "/configuration.html"
+"/packages.html" = "/package-management.html"
+"/getting-started.html" = "/quick-start.html"
+"/changelog.html" = "/releases.html"
+"/uninstall.html" = "/installation.html"
