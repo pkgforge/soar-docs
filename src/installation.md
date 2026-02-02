@@ -1,99 +1,170 @@
 # Installation
 
-There are several ways to install Soar on your Linux system. Choose the method that best suits your needs.
+Install Soar on your Linux system using one of the following methods.
+
+> **Prerequisites:** Linux (any distribution), curl or wget, basic shell access.
+
+## System Requirements
+
+- **Architectures:** x86_64, aarch64, riscv64
+- **OS:** Any Linux distribution (kernel 4.0+ recommended)
+- **Building from source:** Rust 1.88.0+
 
 ## Quick Installation
 
-### Install Script
-The fastest way to install Soar is using our installation script:
+### Install Script (Recommended)
 
 ```sh
 curl -fsSL https://soar.qaidvoid.dev/install.sh | sh
 ```
 
-Or if you prefer using wget:
+Or with wget:
 
 ```sh
 wget -qO- https://soar.qaidvoid.dev/install.sh | sh
 ```
 
-The install script supports several environment variables to customize the installation:
+The script automatically detects your architecture, downloads the appropriate binary, and installs it to:
+- `/usr/local/bin` (if running as root)
+- `$HOME/.local/bin` (user installation, default)
 
-- `SOAR_VERSION`: Specify the version to install
+#### Install Script Options
+
+| Variable | Purpose | Example |
+|----------|---------|---------|
+| `SOAR_VERSION` | Specify version | `latest`, `nightly`, `0.4.0` |
+| `SOAR_INSTALL_DIR` | Custom directory | `/usr/local/bin`, `$HOME/.local/bin` |
+| `DEBUG` | Enable debug output | Set to any value |
+
+**Examples:**
+
 ```sh
 # Install specific version
-curl -qfsSL "https://soar.qaidvoid.dev/install.sh" | SOAR_VERSION=0.4.0 sh
+curl -fsSL https://soar.qaidvoid.dev/install.sh | SOAR_VERSION=0.4.0 sh
 
-# Install latest release
-curl -qfsSL "https://soar.qaidvoid.dev/install.sh" | SOAR_VERSION=latest sh
+# Install to custom directory
+curl -fsSL https://soar.qaidvoid.dev/install.sh | SOAR_INSTALL_DIR=$HOME/.local/bin sh
 
-# Install nightly build
-curl -qfsSL "https://soar.qaidvoid.dev/install.sh" | SOAR_VERSION=nightly sh
-```
-
-- `SOAR_INSTALL_DIR`: Specify custom installation directory
-```sh
-curl -qfsSL "https://soar.qaidvoid.dev/install.sh" | SOAR_INSTALL_DIR=~/.bin sh
-```
-
-### Cargo (crates.io)
-```sh
-cargo install soar-cli
+# Enable debug output
+curl -fsSL https://soar.qaidvoid.dev/install.sh | DEBUG=1 sh
 ```
 
 ## Manual Installation
 
-### From Binary Releases
+### From Pre-built Binaries
 
-1. Visit the [releases page](https://github.com/pkgforge/soar/releases)
-2. Download the appropriate binary for your architecture:
-   - `soar-x86_64-linux` for 64-bit Intel/AMD systems
-   - `soar-aarch64-linux` for 64-bit ARM systems
+1. **Download from [releases](https://github.com/pkgforge/soar/releases)**
 
-3. Make the binary executable:
+2. **Choose your architecture:**
+   - `soar-x86_64-linux` (Intel/AMD)
+   - `soar-aarch64-linux` (ARM 64-bit)
+   - `soar-riscv64-linux` (RISC-V 64-bit)
+
+3. **Install:**
+
 ```sh
-chmod +x soar
+chmod +x soar-x86_64-linux
+sudo mv soar-x86_64-linux /usr/local/bin/soar
 ```
 
-4. Move the binary to your desired location, for example `/usr/local/bin`:
+### From Cargo
+
 ```sh
-sudo mv soar /usr/local/bin/soar
+cargo install soar-cli
 ```
 
-5. Verify the installation by running `soar --version`:
-```sh
-soar --version
-```
-This should output the version number of the installed Soar binary.
+Requires Rust toolchain. Takes longer due to compilation.
 
-## From Source
+### Building from Source
 
-To install Soar from source, you need to have Rust and Cargo [`nightly`] installed. Follow these steps:
-
-1. Clone the Soar repository:
 ```sh
 git clone https://github.com/pkgforge/soar.git
-```
-
-2. Navigate to the Soar directory:
-```sh
 cd soar
-```
-
-3. Build and install the project:
-```sh
 cargo install --path .
 ```
 
-4. Verify the installation by running `soar --version`:
+Requires Rust 1.88.0+. See [contributing guide](https://github.com/pkgforge/soar/blob/main/CONTRIBUTING.md) for development setup.
+
+## PATH Configuration
+
+Two directories should be in your PATH:
+- `$HOME/.local/bin` — where the `soar` binary is installed
+- `$HOME/.local/share/soar/bin` — where packages installed by Soar are symlinked
+
 ```sh
-soar --version
+# Add both to PATH (Bash/Zsh)
+echo 'export PATH="$HOME/.local/share/soar/bin:$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
 ```
-This should output the version number of the installed Soar binary.
+
+## Uninstallation
+
+### Remove Soar
+
+```sh
+# User installation
+rm ~/.local/bin/soar
+rm -rf ~/.config/soar ~/.local/share/soar
+
+# System installation
+sudo rm /usr/local/bin/soar
+sudo rm -rf /etc/soar /opt/soar
+```
+
+Or use the self-uninstall command:
+
+```sh
+soar self uninstall
+```
+
+### Remove Packages
+
+```sh
+soar remove ffmpeg
+soar remove --all
+```
+
+## Troubleshooting
+
+**"Command not found" after installation:**
+
+1. Verify binary exists: `ls -la ~/.local/bin/soar`
+2. Check PATH: `echo $PATH`
+3. Add to PATH (see [PATH Configuration](#path-configuration))
+4. Restart shell: `source ~/.bashrc`
+
+**"Permission denied" installing:**
+
+- Use user installation: `SOAR_INSTALL_DIR=$HOME/.local/bin`
+- Or use sudo: `sudo curl -fsSL https://soar.qaidvoid.dev/install.sh | sh`
+
+**Download fails:**
+
+- Try alternative CDN: `curl -fsSL https://soar.pkgforge.dev/install.sh | sh`
+- Use wget: `wget -qO- https://soar.qaidvoid.dev/install.sh | sh`
+- Download manually from [GitHub releases](https://github.com/pkgforge/soar/releases)
+
+**Build from source fails:**
+
+- Check Rust version: `rustc --version` (requires 1.88.0+)
+- Update Rust: `rustup update`
+- Install dependencies: `sudo apt install build-essential pkg-config libssl-dev`
+
+For more help, run `soar health` check verbose output with `--verbose`, or visit [GitHub Issues](https://github.com/pkgforge/soar/issues).
 
 ## Next Steps
 
-After installing Soar, you might want to:
-1. [Configure Soar](./configuration.md) for your specific needs
-2. Learn about [package management](./package-management.md)
-3. Try [installing your first package](./install.md)
+```sh
+# Verify installation
+soar --version
+
+# Sync repositories
+soar sync
+
+# Install your first package
+soar install ffmpeg
+```
+
+- **[Configuration](./configuration.md)** - Customize settings and repositories
+- **[Package Management](./package-management.md)** - Install, update, and manage packages
+- **[Profiles](./profiles.md)** - Set up installation profiles

@@ -1,13 +1,273 @@
 # Use Package From Different Family
 
-Soar allows you to switch between different family of installed packages without uninstalling one. This feature is particularly useful when you need to switch between different family providing the same package.
+Soar allows you to switch between different variants of installed packages without uninstalling any. This feature is particularly useful when you need to switch between different versions, implementations, or repository sources of the same package.
 
-## Usage
+## Understanding Package Families
 
-To list out installed `cat` packages and switch:
-```sh
-soar use cat
+A **package family** refers to multiple installed variants of the same package name. These variants can differ in:
+
+| Variant Type | Example | Description |
+|--------------|---------|-------------|
+| **Version** | `python@3.11` vs `python@3.12` | Different versions of the same package |
+| **Implementation** | `cat` (GNU) vs `cat` (BusyBox) | Different implementations providing the same binary |
+| **Repository** | `neovim` from `main` vs `testing` | Same package from different repositories |
+| **Package ID** | `coreutils` vs `coreutils-ucr` | Different package IDs providing similar functionality |
+
+### Example Package Families
+
+```
+Package: python
+├── python#python@3.11 (from main repo)
+├── python#python@3.12 (from main repo)
+└── python#pypy@3.11 (from testing repo)
+
+Package: cat
+├── cat#coreutils@9.5 (provides: cat, ls, etc.)
+├── cat#busybox@1.36 (provides: cat, ls, etc.)
+└── cat#uutils-coreutils@0.0.23 (provides: cat, ls, etc.)
 ```
 
-It'll list out all the `cat` packages installed from different `pkg_id`, `version` or `repositories` and let you choose one to use.
-The one you choose will be linked to `bin` path alongside its `provides`.
+## When to Switch Packages
+
+### Common Use Cases
+
+1. **Version Testing**
+   ```sh
+   # Switch to Python 3.12 to test new features
+   soar use python
+   # Select python@3.12 from the list
+   python --version
+   ```
+
+2. **Compatibility Requirements**
+   ```sh
+   # Switch to older Node.js for a legacy project
+   soar use node
+   # Select node@18 from the list
+   ```
+
+3. **Alternative Implementations**
+   ```sh
+   # Switch to BusyBox variants for embedded systems
+   soar use cat
+   # Select busybox@1.36 for smaller footprint
+   ```
+
+4. **Testing Repository Versions**
+   ```sh
+   # Try a package from the testing repository
+   soar use neovim
+   # Select neovim from testing repo
+   ```
+
+## How the Use Command Works
+
+### Step 1: List Installed Variants
+
+When you run `soar use <package>`, Soar displays all installed variants:
+
+```sh
+$ soar use python
+
+[1] python#python:3.11.5-main (15MB) *
+[2] python#python:3.12.0-main (16MB)
+[3] python#pypy:3.11.0-testing (12MB)
+
+Select a variant [1-3]:
+```
+
+### Step 2: Select a Variant
+
+Select the number corresponding to your desired variant. Soar will then:
+
+1. **Overwrite symlinks** for the package and its `provides` entries (existing symlinks are replaced, not removed separately)
+2. **Mark the selected variant as active** in the database
+3. **Mark other variants as inactive** (they remain installed but unlinked)
+
+### Step 3: Verify the Switch
+
+```sh
+$ python --version
+Python 3.12.0
+```
+
+## Command Syntax
+
+```sh
+soar use <package_name>
+```
+
+- `<package_name>`: The **base package name only** (e.g., `python`, `cat`, `node`)
+  - Do not use version suffixes (e.g., use `python`, not `python@3.12`)
+  - Do not use pkg_id prefixes (e.g., use `python`, not `python#pypy`)
+- No additional flags or options are supported
+- The command is interactive when multiple variants are installed
+- **Early exit**: If only one variant is installed, the command exits without prompting (nothing to switch)
+
+## What Gets Switched
+
+When you switch packages, Soar manages:
+
+### Primary Binary
+The main binary name:
+```sh
+# Switching 'python' affects:
+~/.local/share/soar/bin/python -> /path/to/python@3.12/bin/python
+```
+
+### Provided Binaries
+All binaries listed in the package's `provides` field:
+
+```sh
+# Switching 'coreutils' affects all its provides:
+~/.local/share/soar/bin/cat -> /path/to/coreutils/bin/cat
+~/.local/share/soar/bin/ls -> /path/to/coreutils/bin/ls
+~/.local/share/soar/bin/chmod -> /path/to/coreutils/bin/chmod
+# ... and more
+```
+
+> **Warning:** Switching a package affects ALL binaries it provides. If you switch `coreutils`, you'll switch `cat`, `ls`, `chmod`, and all other core utilities simultaneously.
+
+## Practical Examples
+
+### Python Version Management
+
+```sh
+soar install python@3.11 python@3.12
+soar use python  # Select python@3.12
+python --version  # Python 3.12.0
+```
+
+### Alternative Implementations
+
+```sh
+soar install coreutils uutils-coreutils
+soar use cat  # Select uutils-coreutils
+ls --version  # uutils-coreutils 0.0.23
+```
+
+## Managing Multiple Variants
+
+### Viewing All Installed Variants
+
+To see all installed packages and their variants:
+
+```sh
+soar info
+
+# Output:
+# Installed packages:
+# python@3.11.5 (main)
+# python@3.12.0 (main)
+# node@18.0.0 (main)
+# node@20.0.0 (main)
+# coreutils@9.5 (main)
+# busybox@1.36 (main)
+```
+
+### Removing Unwanted Variants
+
+If you no longer need a variant:
+
+```sh
+# Remove a specific variant
+soar remove python@3.11
+
+# Remove all variants
+soar remove --all python
+```
+
+## Limitations and Considerations
+
+### 1. Must Be Installed First
+
+You can only switch between installed variants. If no variants are installed:
+
+```sh
+$ soar use python
+Package is not installed
+```
+
+The command displays this message and exits gracefully (no error code).
+
+### 2. No Automatic Rollback
+
+There's no automatic undo. You must manually switch back:
+
+```sh
+soar use python
+# Select different variant
+```
+
+### 3. Affects All Provides
+
+Switching affects all binaries the package provides:
+
+```sh
+soar use coreutils
+# This switches cat, ls, chmod, mkdir, etc. all at once
+```
+
+## Best Practices
+
+- **Install Multiple Versions**: Install all versions you might need for development
+- **Document Requirements**: Note required versions in project README
+- **Use Profiles**: Use different profiles for different project requirements
+- **Test First**: Use `soar run` to test before switching in production
+
+## Comparison with Other Tools
+
+| Feature | `soar use` | `update-alternatives` | `nvm` | `pyenv` |
+|---------|-----------|----------------------|-------|---------|
+| **Multiple Versions** | ✅ | ✅ | ✅ | ✅ |
+| **Package Agnostic** | ✅ | ✅ | ❌ | ❌ |
+| **Repository Support** | ✅ | ❌ | ❌ | ❌ |
+
+## Troubleshooting
+
+### Issue: Command not found after switch
+
+```sh
+soar use python
+python: command not found
+```
+
+**Solution**: This error means Soar's bin directory is not in your PATH. Add it permanently:
+
+```sh
+# Add to your ~/.bashrc, ~/.zshrc, or equivalent
+export PATH="$HOME/.local/share/soar/bin:$PATH"
+```
+
+Then reload your shell:
+```sh
+source ~/.bashrc  # or source ~/.zshrc
+```
+
+### Issue: Old version still showing
+
+```sh
+soar use python
+python --version  # Still shows old version
+```
+
+**Solution**: Check for cached paths:
+```sh
+hash -r  # Clear command hash table
+python --version  # Should show new version
+```
+
+### Issue: No variants listed
+
+If you don't see any variants listed when running `soar use`:
+
+```sh
+$ soar use python
+Package is not installed
+```
+
+**Solution**: Install at least one variant of the package first:
+```sh
+soar install python
+soar use python  # Now shows installed variants
+```

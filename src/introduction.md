@@ -1,51 +1,85 @@
 # Introduction
 
 ## What is Soar?
-Soar is a fast, modern, bloat-free distro-independent package manager that just works. Supports static binaries, AppImages, and other portable formats.
+
+Soar is a fast, modern, bloat-free distro-independent package manager that just works. It supports static binaries, AppImages, and other portable formats.
+
+> **Note:** Soar is designed to work seamlessly across all Linux distributions, providing a consistent package management experience regardless of your distro choice.
 
 ## Key Features
 
-### Universal Package Support
-- **[Binary Packages](https://github.com/Azathothas/Toolpacks)**: Direct installation of pre-compiled binaries - no system compilation needed, only bandwidth and storage
-- **[AppImage](https://github.com/AppImage/AppImageKit) Integration**: Smart desktop integration with automatic icon scaling, menu entries, and runtime fixes
-- **[FlatImage](https://github.com/ruanformigoni/flatimage) Support**: Seamless handling of Flatpak-style packages
-- **[Multiple Format Handling](https://github.com/Azathothas/Toolpacks-Extras/tree/main/Docs)**: Extensible architecture supporting various package formats
+**Universal Package Support**
 
-### Desktop Integration
+- **Binary Packages** - Direct installation of pre-compiled binaries from [bincache](https://github.com/pkgforge/bincache) and [pkgcache](https://github.com/pkgforge/pkgcache) repositories - no system compilation needed
+- **AppImage Integration** - Smart desktop integration with automatic icon scaling and menu entries
+- **FlatImage Support** - Seamless handling of [FlatImage](https://github.com/ruanformigoni/flatimage) packages
+- **Extensible Architecture** - Support for [multiple package formats](https://github.com/Azathothas/Toolpacks-Extras/tree/main/Docs)
+
+**Desktop Integration**
+
 Soar strictly follows the [freedesktop.org specifications](https://specifications.freedesktop.org/) for seamless Linux desktop integration.
-- **Automatic Desktop Entries**: Seamless integration with desktop menus through properly configured desktop files and icons
-- **Icon Management**: Automatic scaling and integration of application icons across all system themes and resolutions
-- **Smart Symlink Handling**: Intelligent binary path management
-- **Portable Configurations**: Take your entire setup anywhere - relocate all apps and their configurations to any device
 
-<div class="warning">
-    By following freedesktop.org specifications, Soar ensures consistent behavior across different Linux desktop environments and distributions.
-</div>
+- **Automatic Desktop Entries** - Seamless integration with desktop menus
+- **Icon Management** - Automatic scaling across all themes and resolutions
+- **Smart Symlink Handling** - Intelligent binary path management
+- **Portable Configurations** - Relocate apps and configs to any device
 
-## Why Choose Soar?
+> **Tip:** By following freedesktop.org specifications, Soar ensures consistent behavior across different Linux desktop environments and distributions.
 
-Soar stands out from traditional package managers by offering:
+## Why Soar?
 
-1. **Speed and Efficiency**
-   - Uses pre-built binary cache - no unsafe local compilation or shell scripts running on your machine
-   - Built with Rust for reliable, fast performance instead of shell script patchworks
-   - Parallel downloads and installations
+Soar is built for speed, security, and simplicity.
 
-2. **User Experience**
-   - Intuitive commands that make sense without memorizing manpages
-   - Clear, human-friendly error messages instead of cryptic codes
-   - Real-time progress feedback during operations
+**Fast & Efficient**
+- Pre-built binary cache - no unsafe local compilation
+- Built with Rust for reliable, fast performance
+- Parallel downloads and installations
 
-3. **Flexibility**
-   - Support for multiple formats: static binaries, AppImages, FlatImages, AppBundles, and more
-   - Fully portable configurations - take your entire setup anywhere
+**User-Friendly**
+- Intuitive commands without memorizing manpages
+- Clear, human-friendly error messages
+- Real-time progress feedback
 
-4. **Integration**
-   - Comprehensive desktop environment integration across all package formats
-   - Smart handling of icons, menus, and file associations
+**Flexible & Portable**
+- Multiple package formats: static binaries, AppImages, FlatImages, and more
+- Fully portable configurations
 
-5. **Security**
-   - All packages built on secure remote CI servers with transparent build logs
-   - Build logs available for auditing via `soar log <package>`
-   - Cryptographic verification using BLAKE3 checksums for all downloads
-   - No arbitrary script execution on your machine
+**Well-Integrated**
+- Comprehensive desktop environment integration
+- Smart handling of icons, menus, and file associations
+
+**Secure**
+- All packages built on secure remote CI servers
+- Build logs available for auditing via `soar log <package>`
+- Cryptographic verification using BLAKE3 checksums and minisign signatures
+- No arbitrary script execution on your machine
+
+## Quick Start by Goal
+
+Choose your goal to jump to the relevant documentation:
+
+### I want to get started with Soar
+- [Installation Guide](./installation.md) - Get Soar running on your system
+- [Configuration Basics](./configuration.md) - Set up repositories and preferences
+- [First Package Installation](./install.md) - Install your first package
+
+### I want to manage packages
+- [Install Packages](./install.md) - Add software to your system
+- [Search & Discover](./search.md) - Find available packages
+- [Update Packages](./update.md) - Keep software current
+- [Remove Packages](./remove.md) - Uninstall what you don't need
+
+### I want to customize my setup
+- [Configuration Reference](./configuration.md) - All config options explained
+- [Profile Management](./profiles.md) - Multiple isolated environments
+- [Declarative Packages](./declarative.md) - Define packages in code
+
+### I want to maintain my system
+- [Health & Troubleshooting](./health.md) - Diagnose and fix issues
+- [System Maintenance](./maintenance.md) - Updates, cleanup, and repairs
+- [CLI Reference](./cli-reference.md) - Complete command documentation
+
+### I want advanced features
+- [Package Variants](./use.md) - Switch between versions
+- [Run Without Installing](./run.md) - Execute packages directly
+- [Download Utilities](./download.md) - Advanced download capabilities

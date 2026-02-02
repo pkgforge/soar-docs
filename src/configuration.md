@@ -1,189 +1,167 @@
 # Configuration
 
-Soar offers flexible configuration options to customize its behavior according to your needs. This section explains how to configure Soar and details all available configuration options.
+Soar stores configuration at `~/.config/soar/config.toml`. If the file doesn't exist, sensible defaults are used.
 
-## Configuration File
+> **Quick Start:** Run `soar defconfig` to create a default configuration file.
 
-Soar uses a configuration file located at `~/.config/soar/config.toml`. If this file doesn't exist, Soar will use the defaults.
+## Configuration Reference
 
-## Configuration Options
+| Configuration Option | Type | Default | Description |
+|---------------------|------|---------|-------------|
+| **Path Settings** |
+| `cache_path` | String | `~/.local/share/soar/cache` | Directory for cached package files |
+| `db_path` | String | `~/.local/share/soar/db` | Path to package database |
+| `bin_path` | String | `~/.local/share/soar/bin` | Directory for binary symlinks |
+| `repositories_path` | String | `~/.local/share/soar/repos` | Local repository clones |
+| `portable_dirs` | String | `~/.local/share/soar/portable-dirs` | Base path for portable app data (AppImage/FlatImage/RunImage/Wrappe only) |
+| **Performance** |
+| `parallel` | Boolean | `true` | Enable parallel downloads |
+| `parallel_limit` | Integer | `4` | Max parallel downloads (1-16) |
+| `ghcr_concurrency` | Integer | `8` | Max GHCR concurrent requests (1-32) |
+| `search_limit` | Integer | `20` | Max search results (5-100) |
+| `cross_repo_updates` | Boolean | `false` | Allow cross-repo updates (not implemented) |
+| **Package Installation** |
+| `install_patterns` | Array | `["!*.log", "!SBUILD", "!*.json", "!*.version"]` | Files to exclude during installation |
+| **Security** |
+| `signature_verification` | Boolean | `null` (auto) | Enable package signature verification |
+| **Desktop Integration** |
+| `desktop_integration` | Boolean | `null` (repo-specific) | Enable desktop menu entries |
+| **Repository Sync** |
+| `sync_interval` | String | `"3h"` | How often to sync repositories |
+| **Display Settings** |
+| `display.progress_style` | String | `"modern"` | Progress bar style: `classic`, `modern`, `minimal` |
+| `display.icons` | Boolean | `true` | Show Unicode icons |
+| `display.spinners` | Boolean | `true` | Show animated spinners |
 
-Soar's configuration is structured into several key areas: application-wide settings, profiles, and repositories.
+**Special `sync_interval` values:** `"always"`, `"never"`, `"auto"` (3h), or duration like `"30m"`, `"6h"`, `"1d"`
 
-### Default Configuration
+## Key Options
+
+### Path Settings
+Control where Soar stores data. Add `bin_path` to your PATH:
+```sh
+export PATH="$HOME/.local/share/soar/bin:$PATH"
+```
+
+### Performance
+- **`parallel` / `parallel_limit`**: Increase for faster downloads on stable connections, decrease for slow/unstable connections
+- **`ghcr_concurrency`**: Adjust if experiencing GHCR rate limiting
+
+### Install Patterns
+Glob patterns for files to exclude during installation. Patterns starting with `!` are exclusions:
+```toml
+install_patterns = [
+    "!*.log",      # Exclude log files
+    "!SBUILD",     # Exclude build scripts
+    "!*.debug",    # Exclude debug symbols
+]
+```
+
+### Security
+**`signature_verification`**: Set to `true` for maximum security, `false` for trusted local repos. Can be overridden per-repository.
+
+### Desktop Integration
+**`desktop_integration`**: Enable for GUI applications to appear in application menus. Can be set globally or per-repository.
+
+### Display Settings
+```toml
+[display]
+progress_style = "modern"  # classic, modern, minimal
+icons = true
+spinners = true
+```
+
+## Repositories
+
+Repositories are defined as arrays of tables in your configuration:
 
 ```toml
-# The name of the default profile to use.
-default_profile = "default"
-# Path to the local cache directory.
-# Default: $SOAR_ROOT/cache
-cache_path = "~/.local/share/soar/cache"
-# Path where the Soar package database is stored.
-# Default: $SOAR_ROOT/db
-db_path = "~/.local/share/soar/db"
-# Directory where binary symlinks are placed.
-# Default: $SOAR_ROOT/bin
-bin_path = "~/.local/share/soar/bin"
-# Path to the local clone of all repositories.
-# Default: $SOAR_ROOT/packages
-repositories_path = "~/.local/share/soar/repos"
-# If true, enables parallel downloading of packages.
-# Default: true
-parallel = true
-# Maximum number of parallel downloads.
-# Default: 4
-parallel_limit = 4
-# Maximum number of concurrent requests for GHCR (GitHub Container Registry).
-# Default: 8
-ghcr_concurrency = 8
-# Limits the number of results returned by a search.
-# Default: 20
-search_limit = 20
-# Allows packages to be updated across different repositories.
-# NOTE: This is not yet implemented
-cross_repo_updates = false
-# Glob patterns for package files that should be included during install.
-# Default: ["!*.log", "!SBUILD", "!*.json", "!*.version"]
-install_patterns = [
-    "!*.log",
-    "!SBUILD",
-    "!*.json",
-    "!*.version",
-]
-
-# A profile defines a local package store and its configuration.
-[profile.default]
-# Root directory for this profile’s data and packages.
-#
-# If `packages_path` is not set, packages will be stored in `root_path/packages`.
-root_path = "~/.local/share/soar"
-# Optional path where packages are stored.
-#
-# If unset, defaults to `root_path/packages`.
-packages_path = "~/.local/share/soar/packages"
-
-# List of configured repositories.
-#
-# Defines a remote repository that provides packages.
 [[repositories]]
-# Unique name of the repository.
 name = "bincache"
-# URL to the repository's metadata file.
 url = "https://meta.pkgforge.dev/bincache/x86_64-Linux.sdb.zstd"
-# Enables desktop integration for packages from this repository.
-# Default: false
-desktop_integration = false
-# URL to the repository's public key (for signature verification).
 pubkey = "https://meta.pkgforge.dev/bincache/minisign.pub"
-# Whether the repository is enabled.
-# Default: true
+desktop_integration = false
 enabled = true
-# Enables signature verification for this repository.
-# Default is derived based on the existence of `pubkey`
 signature_verification = true
-# Optional sync interval (e.g., "1h", "12h", "1d").
-# Default: "3h"
 sync_interval = "3h"
-# Optional nest sync interval
-# Default: "3h"
-nests_sync_interval: "3h"
-
-[[repositories]]
-name = "pkgcache"
-url = "https://meta.pkgforge.dev/pkgcache/x86_64-Linux.sdb.zstd"
-desktop_integration = true
-pubkey = "https://meta.pkgforge.dev/pkgcache/minisign.pub"
-
-[[repositories]]
-name = "pkgforge-cargo"
-url = "https://meta.pkgforge.dev/external/pkgforge-cargo/x86_64-Linux.sdb.zstd"
-desktop_integration = false
-
-[[repositories]]
-name = "pkgforge-go"
-url = "https://meta.pkgforge.dev/external/pkgforge-go/x86_64-Linux.sdb.zstd"
-desktop_integration = false
 ```
 
-<div class="warning">
-  The `db_path`, `bin_path` and `repositories_path` is derived from the root path of `default_profile` if not provided explicitly.
+### Repository Fields
 
-   Replace `x86_64` with `aarch64` if you're using `aarch64` system.
-</div>
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `name` | String | (required) | Unique repository name. **Note:** `"local"` is reserved |
+| `url` | String | (required) | URL to repository metadata |
+| `pubkey` | String | `null` | URL to repository's public key |
+| `enabled` | Boolean | `true` | Enable/disable this repository |
+| `desktop_integration` | Boolean | `false` | Enable desktop integration for packages |
+| `signature_verification` | Boolean | auto | Enable signature verification (auto-enabled if `pubkey` exists) |
+| `sync_interval` | String | `"3h"` | Sync interval: `"always"`, `"never"`, `"auto"`, or duration |
 
-### Create config file
+### Default Repositories
 
-You can create default configuration using command:
+Soar includes these default repositories for Linux platforms (aarch64, riscv64, x86_64):
 
-```sh
-soar defconfig
-```
+- **bincache**: Stripped binaries with no desktop integration
+  - URL: `https://meta.pkgforge.dev/bincache/{platform}.sdb.zstd`
+  - Signature verification enabled
+  - Desktop integration disabled
 
-You can also enable [external repositories](https://docs.pkgforge.dev/repositories/external) using command:
+- **pkgcache**: Full packages with desktop integration
+  - URL: `https://meta.pkgforge.dev/pkgcache/{platform}.sdb.zstd`
+  - Desktop integration enabled
 
-```sh
-soar defconfig --external
-```
+## Managing Configuration
 
-You can selectively enable repositories using command:
-
-```sh
-# only enable bincache repo
-soar defconfig -r bincache
-```
-
-<div class="warning">
-   These commands only work if you haven't created soar configuration file yet.
-</div>
-
-### View/Edit config file
-
-Soar provides a convenient way to view and edit configuration file.
-
-View config file
+**View config:**
 ```sh
 soar config
 ```
 
-Edit config file. You need to have `EDITOR` environment variable set, or it'll fallback to `vi`.
-
+**Edit config:**
 ```sh
 soar config -e
 ```
 
-### Using custom config file
-
-It is possible to use different configuration file using `-c` flag.
-
+**Use custom config:**
 ```sh
 soar -c /path/to/config.toml [subcommand]
 ```
 
-### Custom Repository Support
+## Environment Variables
 
-You can fully customize the repositories Soar uses:
+| Variable | Description |
+|----------|-------------|
+| `SOAR_CONFIG` | Custom config file path |
+| `SOAR_ROOT` | Root directory override (affects all profiles) |
+| `SOAR_CACHE` | Cache directory override |
+| `SOAR_BIN` | Binary directory override |
+| `SOAR_DB` | Database path override |
+| `SOAR_PACKAGES` | Packages directory override |
+| `SOAR_REPOSITORIES` | Repositories directory override |
+| `SOAR_PORTABLE_DIRS` | Portable directories path override |
+| `RUST_LOG` | Debug logging level (`debug`, `info`, `trace`) |
 
-- You can completely replace the default pkgforge repositories with your own.
-- Soar supports various metadata formats, including `SQLite` and `JSON`, with `zstd` compression.
-- You can mix and match different types of repositories.
+> **Note:** Environment variables take precedence over configuration file settings and profile paths.
 
-This flexibility allows you to build a fully customized package management setup that meets your specific needs and security requirements.
+## Common Issues
 
-## Troubleshooting
+### Invalid TOML Syntax
+Check for unclosed brackets, missing quotes, or duplicate names. Use `soar config` to validate.
 
-### Common Configuration Issues
-1. **Invalid TOML Syntax**
- - Problem: Errors like unclosed brackets, braces, or missing quotation marks around strings can lead to configuration parsing failures.
- - Solution: Carefully review your config.toml file for syntax errors. TOML is strict, so ensure all elements are correctly formatted.
+### Command Not Found
+Add `bin_path` to your PATH in `~/.bashrc` or `~/.zshrc`.
 
-2. **Invalid Repository URL**
- - Problem: Soar can't access or parse metadata from a repository URL. This might be due to a malformed URL, a typo, or the server being unreachable.
- - Solution: Double-check that all repository URLs are properly formatted and accessible. Ensure there are no trailing slashes unless explicitly required by the repository server.
+### Repository Not Syncing
+Run `soar sync` manually. Check network connectivity and repository URLs.
 
-3. **Permission Issues**
- - Problem: Soar might not have the necessary read/write permissions for its configuration file or the directories it uses for databases, binaries, or packages.
- - Solution: Verify that your user account has write permissions for ~/.config/soar/config.toml and for all paths specified in your configuration (db_path, bin_path, repositories_path, and root_path/packages_path within your profiles).
+### Signature Verification Failed
+Verify the `pubkey` URL is correct. Run `soar sync` to update keys.
 
-4. **Duplicate Repository/Profile Names**
- - Problem: Each repository and profile must have a unique name. Duplicates will cause conflicts.
- - Solution: Ensure that every name field in your `[[repositories]]` sections and every profile name under `[profile.<name>]` is unique. Remember that names are case-sensitive.
+### Garbled Output
+Switch to classic display mode:
+```toml
+[display]
+progress_style = "classic"
+icons = false
+```

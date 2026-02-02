@@ -40,8 +40,16 @@ Find packages in repositories:
 
 ### [Listing Packages](./list.md)
 View available and installed packages:
-- List all packages: `soar list`
-- List installed packages: `soar info`
+- List all available packages: `soar list`
+- List installed packages with sizes: `soar info`
+
+## Package Inspection
+
+### [Inspection Commands](./inspection.md)
+Inspect package details and build information:
+- View build logs: `soar log <package>`
+- Inspect build scripts: `soar inspect <package>`
+- Query package details: `soar query <package>`
 
 ## Advanced Operations
 
@@ -53,6 +61,11 @@ Switch between different variant of installed packages:
 Execute packages without installation:
 - Run package: `soar run <package> [args]`
 
-### [Viewing Package Logs](./logs.md)
-View detailed package information:
-- View build logs: `soar log <package>`
+## System Maintenance
+
+Perform system maintenance and repository operations:
+
+### [Maintenance Commands](./maintenance.md)
+- Clean cache and broken files: `soar clean`
+- Sync repositories: `soar sync`
+- View environment: `soar env`
