@@ -81,7 +81,7 @@ remote-tool = { url = "https://example.com/tool.tar.gz" }
 ```toml
 [packages.my_package]
 pkg_id = "pkg-bin"
-repo = "bincache"
+repo = "soarpkgs"
 version = "1.0.0"
 pinned = true
 portable = { home = "~/.pkg", config = "~/.pkg/config" }
@@ -369,7 +369,7 @@ bat = "*"
 ripgrep = "14.1.0"
 
 # Inline table for minor customization
-fd = { version = "9.0.0", repo = "bincache" }
+fd = { version = "9.0.0", repo = "soarpkgs" }
 ```
 
 **Use simple strings when:**
@@ -425,7 +425,7 @@ pinned = true
 bat = "*"
 ripgrep = "*"
 soar = "0.5.2"
-7z = { repo = "bincache" }
+7z = { repo = "soarpkgs" }
 ```
 
 ### Advanced Configuration

@@ -68,9 +68,9 @@ To install a package from a specific repository:
 soar add <package>:<repository_name>
 ```
 
-Example: Install the `7z` package from the `bincache` repository
+Example: Install the `7z` package from the `soarpkgs` repository
 ```sh
-soar add 7z:bincache
+soar add 7z:soarpkgs
 ```
 
 ### Installing from URL

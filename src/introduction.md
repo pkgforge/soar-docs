@@ -27,7 +27,7 @@ soar install neovim
 <div class="landing-features">
 <div class="feature-card">
 <h3>Universal Packages</h3>
-<p>Static binaries, AppImages, FlatImages — one tool handles them all. Packages come from <a href="https://github.com/pkgforge/bincache">bincache</a> and <a href="https://github.com/pkgforge/pkgcache">pkgcache</a> repositories.</p>
+<p>Static binaries, AppImages, FlatImages — one tool handles them all. Packages come from the <a href="https://github.com/pkgforge/soarpkgs">soarpkgs</a> repository.</p>
 </div>
 <div class="feature-card">
 <h3>Fast & Efficient</h3>

@@ -77,7 +77,7 @@ soar search bat
 
 Results may include packages from multiple repositories:
 ```
-bat#official:bincache
+bat#official:soarpkgs
 bat#official:official
 ```
 
@@ -100,7 +100,7 @@ Search results use status icons:
 Example output:
 ```
 [+] bat#official:official (0.24.0)
-[-] bat#official:bincache (0.23.0)
+[-] bat#official:soarpkgs (0.23.0)
 [?] code#official:flathub (latest)
 ```
 

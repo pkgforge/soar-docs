@@ -30,8 +30,8 @@ soar ls
 To list packages from a specific repository only:
 
 ```sh
-# List packages from the 'bincache' repository
-soar list bincache
+# List packages from the 'soarpkgs' repository
+soar list soarpkgs
 
 # List packages from the 'myrepo' repository
 soar ls myrepo
@@ -40,12 +40,12 @@ soar ls myrepo
 ### Example Output
 
 ```sh
-$ soar list bincache
+$ soar list soarpkgs
 
-[-] 7z#e4d8:bincache | 24.09 | archive
-[+] bat#7a3c:bincache | 0.24.0 | cli
-[+] curl#9f2d:bincache | 8.11.1 | web
-[-] ffmpeg#1b5e:bincache | 7.1 | multimedia
+[-] 7z#e4d8:soarpkgs | 24.09 | archive
+[+] bat#7a3c:soarpkgs | 0.24.0 | cli
+[+] curl#9f2d:soarpkgs | 8.11.1 | web
+[-] ffmpeg#1b5e:soarpkgs | 7.1 | multimedia
 ...
 
 ┏━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
@@ -95,11 +95,11 @@ It will list all the installed packages alongside the total size used by each pa
 To see only packages installed from a specific repository:
 
 ```sh
-# Show packages installed from 'bincache'
-soar info --repo-name bincache
+# Show packages installed from 'soarpkgs'
+soar info --repo-name soarpkgs
 
 # Using the short option
-soar info -r bincache
+soar info -r soarpkgs
 ```
 
 ### Count Installed Packages
@@ -111,7 +111,7 @@ To get a quick count of installed packages:
 soar info --count
 
 # Count packages from specific repository
-soar info --repo-name bincache --count
+soar info --repo-name soarpkgs --count
 ```
 
 ### Example Output
@@ -119,10 +119,10 @@ soar info --repo-name bincache --count
 ```sh
 $ soar info
 
-bat-0.24.0:bincache (2025-01-15) (1.8 MB)
-curl-8.11.1:bincache (2025-01-15) (2.4 MB)
-ffmpeg-7.1:bincache (2025-01-14) (15.2 MB)
-jq-1.7.1:bincache (2025-01-10) (1.5 MB) ✗ Broken
+bat-0.24.0:soarpkgs (2025-01-15) (1.8 MB)
+curl-8.11.1:soarpkgs (2025-01-15) (2.4 MB)
+ffmpeg-7.1:soarpkgs (2025-01-14) (15.2 MB)
+jq-1.7.1:soarpkgs (2025-01-10) (1.5 MB) ✗ Broken
 
 ┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ ✓ Installed ┃ 3, 3 distinct (20.0 MB)     ┃
@@ -159,7 +159,7 @@ Use `info` to verify installation status before performing operations:
 soar info | grep ripgrep
 
 # Check specific repository packages
-soar info --repo-name bincache | grep ffmpeg
+soar info --repo-name soarpkgs | grep ffmpeg
 ```
 
 ---

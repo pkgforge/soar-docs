@@ -41,7 +41,7 @@ The `query` command searches for packages and displays detailed information in a
 ```sh
 $ soar query bat
 
-✓ Name            bat#cat:bincache
+✓ Name            bat#cat:soarpkgs
 ✓ Description     A cat(1) clone with wings
 ✓ Version         0.24.0
 ✓ Size            1.8 MB
@@ -317,7 +317,7 @@ soar query python@3.12
 soar query "ripgrep@14.0"
 
 # By repository (using colon syntax)
-soar query bat:bincache
+soar query bat:soarpkgs
 ```
 
 ### Query Components
@@ -327,7 +327,7 @@ soar query bat:bincache
 | **Name** | `package` | `bat` | Package name |
 | **Package ID** | `package@version` | `python@3.12` | Specific variant |
 | **Version** | `package@version` | `ripgrep@14.0` | Exact version |
-| **Repository** | `package:repo` | `bat:bincache` | Source repository |
+| **Repository** | `package:repo` | `bat:soarpkgs` | Source repository |
 
 ### Interactive Selection
 
@@ -337,9 +337,9 @@ When multiple packages match your query, Soar prompts for selection:
 $ soar query python
 
 Multiple packages found. Select one:
-  1) python@3.12 (bincache) - Python 3.12.1
-  2) python@3.11 (bincache) - Python 3.11.8
-  3) python@3.10 (bincache) - Python 3.10.13
+  1) python@3.12 (soarpkgs) - Python 3.12.1
+  2) python@3.11 (soarpkgs) - Python 3.11.8
+  3) python@3.10 (soarpkgs) - Python 3.10.13
 
 Enter selection [1-3]: 1
 ```
@@ -387,7 +387,7 @@ Binary packages don't have build scripts. Build logs only exist after installati
 
 ### Query Returns Multiple Matches
 
-Use more specific query: `soar query python@3.12` or specify repository: `soar query python:bincache`
+Use more specific query: `soar query python@3.12` or specify repository: `soar query python:soarpkgs`
 
 ### Large Files Prompt for Confirmation
 

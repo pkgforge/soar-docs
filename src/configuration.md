@@ -77,10 +77,10 @@ Repositories are defined as arrays of tables in your configuration:
 
 ```toml
 [[repositories]]
-name = "bincache"
-url = "https://meta.pkgforge.dev/bincache/x86_64-Linux.sdb.zstd"
-pubkey = "https://meta.pkgforge.dev/bincache/minisign.pub"
-desktop_integration = false
+name = "soarpkgs"
+url = "https://github.com/pkgforge/soarpkgs/releases/latest/download/metadata-x86_64-linux.sdb.zstd"
+pubkey = "RWQ109gKujRqohsA7RERlXFfeJi23EcHN3Dz8TxyPAywa5mLw/fbcbU4"
+desktop_integration = true
 enabled = true
 signature_verification = true
 sync_interval = "3h"
@@ -92,7 +92,7 @@ sync_interval = "3h"
 |-------|------|---------|-------------|
 | `name` | String | (required) | Unique repository name. **Note:** `"local"` is reserved |
 | `url` | String | (required) | URL to repository metadata |
-| `pubkey` | String | `null` | URL to repository's public key |
+| `pubkey` | String | `null` | Repository's public key (inline string) |
 | `enabled` | Boolean | `true` | Enable/disable this repository |
 | `desktop_integration` | Boolean | `false` | Enable desktop integration for packages |
 | `signature_verification` | Boolean | auto | Enable signature verification (auto-enabled if `pubkey` exists) |
@@ -100,15 +100,11 @@ sync_interval = "3h"
 
 ### Default Repositories
 
-Soar includes these default repositories for Linux platforms (aarch64, riscv64, x86_64):
+Soar includes one default repository for Linux platforms (aarch64, x86_64):
 
-- **bincache**: Stripped binaries with no desktop integration
-  - URL: `https://meta.pkgforge.dev/bincache/{platform}.sdb.zstd`
+- **soarpkgs**: The unified package repository
+  - URL: `https://github.com/pkgforge/soarpkgs/releases/latest/download/metadata-{platform}.sdb.zstd`
   - Signature verification enabled
-  - Desktop integration disabled
-
-- **pkgcache**: Full packages with desktop integration
-  - URL: `https://meta.pkgforge.dev/pkgcache/{platform}.sdb.zstd`
   - Desktop integration enabled
 
 ## Managing Configuration
@@ -156,7 +152,7 @@ Add `bin_path` to your PATH in `~/.bashrc` or `~/.zshrc`.
 Run `soar sync` manually. Check network connectivity and repository URLs.
 
 ### Signature Verification Failed
-Verify the `pubkey` URL is correct. Run `soar sync` to update keys.
+Verify the `pubkey` value is correct. Run `soar sync` to update repository data.
 
 ### Garbled Output
 Switch to classic display mode:

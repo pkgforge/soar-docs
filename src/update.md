@@ -118,7 +118,7 @@ To update from a different repository:
 soar remove bat
 
 # Install from new repository
-soar add bat:bincache
+soar add bat:soarpkgs
 ```
 
 ## Update Behavior Details
@@ -239,10 +239,10 @@ Update package metadata in the database without changing installed versions.
 # Current setup uses 'official' repository
 soar remove bat
 
-# Switch to 'bincache' repository
-soar add bat:bincache
+# Switch to 'soarpkgs' repository
+soar add bat:soarpkgs
 
-# Future updates will use 'bincache'
+# Future updates will use 'soarpkgs'
 soar update bat
 ```
 

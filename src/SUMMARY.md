@@ -20,5 +20,6 @@
 - [Health](./health.md)
 - [Maintenance](./maintenance.md)
 - [Release Notes](./releases.md)
+    - [Soar 0.12](./releases/v0.12.md)
     - [Soar 0.11](./releases/v0.11.md)
     - [Soar 0.10](./releases/v0.10.md)
