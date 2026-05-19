@@ -36,6 +36,7 @@ The `[defaults]` section sets default values that apply to all packages unless o
 | `profile` | String | Default profile to install packages to |
 | `binary_only` | Boolean | Only extract binaries, skip other files |
 | `install_patterns` | Array of Strings | File patterns to include/exclude during installation |
+| `sandbox` | Object | Default sandbox configuration applied to all packages. Per-package `sandbox` blocks override individual fields; `fs_read`/`fs_write` lists are concatenated with these defaults |
 
 ## Packages Section
 
@@ -66,11 +67,11 @@ remote-tool = { url = "https://example.com/tool.tar.gz" }
 | `pkg = "1.2.3"` | 1.2.3 | Yes (repo only) | Pinned for repository packages |
 | `pkg = { version = "1.2.3" }` | 1.2.3 | Yes (repo only) | Pinned for repository packages |
 | `pkg = { url = "..." }` | Detected | No | Remote packages not auto-pinned |
-| `pkg = { version = "1.2.3", pinned = false }` | 1.2.3 | No | Explicitly override pinning |
+| `pkg = { version = "1.2.3", pinned = false }` | 1.2.3 | Yes | `pinned = false` does **not** unpin a versioned repo package |
 | `pkg = { url = "...", pinned = true }` | Detected | Yes | Explicitly pin remote package |
 
 **Key points:**
-- Repository packages with specific versions are automatically pinned
+- Repository packages with a specific version are always pinned. Setting `pinned = false` does not override this — a versioned non-remote package stays pinned.
 - Remote packages (url/github/gitlab) are never auto-pinned unless you explicitly set `pinned = true`
 - Pinned packages are skipped during auto-update operations
 - Version `*` always resolves to latest and is never pinned
@@ -114,6 +115,7 @@ portable = { home = "~/.pkg", config = "~/.pkg/config" }
 | `entrypoint` | String | Entry point executable name |
 | `nested_extract` | String | Path to nested archive to extract |
 | `extract_root` | String | Subdirectory to treat as root |
+| `arch_map` | Object | Map standard architecture names to custom values used by the package source (see [Architecture Mapping](#architecture-mapping)) |
 
 ### Binary Mappings
 
@@ -157,10 +159,10 @@ hooks = { post_install = "myapp --init" }
 ```toml
 [packages.custom-tool]
 url = "https://example.com/tool-1.0.0.tar.gz"
-build = {
-  commands = ["make -j$NPROC", "make install PREFIX=$INSTALL_DIR"]
-  dependencies = ["gcc", "make"]
-}
+
+[packages.custom-tool.build]
+commands = ["make -j$NPROC", "make install PREFIX=$INSTALL_DIR"]
+dependencies = ["gcc", "make"]
 ```
 
 ### Sandbox
@@ -169,10 +171,11 @@ Restrict filesystem and network access for hooks and build commands using Linux'
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `require` | Boolean | Fail if Landlock is unavailable (default: `false`) |
-| `fs_read` | Array | Additional readable paths |
-| `fs_write` | Array | Additional writable paths |
-| `network` | Boolean | Allow network access (requires kernel 6.7+) |
+| `enabled` | Boolean | Whether sandboxing is enabled (default: `true` when Landlock is available). Set to `false` to skip sandboxing entirely (overrides `require`) |
+| `require` | Boolean | Fail if Landlock is unavailable instead of falling back to unsandboxed execution (default: `false`) |
+| `fs_read` | Array | Additional readable paths (beyond defaults like `/usr`, `/lib`) |
+| `fs_write` | Array | Additional writable paths (beyond install dir and `/tmp`) |
+| `network` | Boolean | Allow network access (requires Landlock V4+, kernel 6.7+) |
 
 ```toml
 [packages.untrusted-tool]
@@ -199,6 +202,29 @@ Configure portable mode for AppImage, FlatImage, RunImage, and Wrappe packages. 
 url = "https://example.com/obsidian.AppImage"
 portable = { path = "~/.obsidian-data" }
 ```
+
+### Architecture Mapping
+
+`arch_map` is a per-package field that maps standard architecture names to the
+custom values used by a package source. The keys are the bare architecture
+names reported by the running system (`x86_64` or `aarch64`), and the values
+are whatever the source uses (e.g. `amd64`, `arm64`, `x64`). The mapped value
+is substituted for the `{arch}` placeholder in `url` and `asset_pattern`.
+
+```toml
+[packages.mytool]
+url = "https://example.com/mytool-{version}-{arch}.tar.gz"
+
+[packages.mytool.arch_map]
+x86_64 = "amd64"
+aarch64 = "arm64"
+```
+
+On an `x86_64` machine this resolves `{arch}` to `amd64`. If no mapping is
+provided for the current architecture, the bare name (`x86_64`/`aarch64`) is
+used as-is. The `{os}` placeholder resolves to the operating system (e.g.
+`linux`), and `{version}` resolves to the package version with any leading
+`v` stripped.
 
 ## GitHub/GitLab Integration
 
@@ -439,30 +465,26 @@ install_patterns = ["!*.log", "!SBUILD"]
 [packages]
 bat = "*"
 
-obsidian = {
-  version = "1.5.0"
-  pinned = true
-  portable = { home = "~/.obsidian-data" }
-}
+[packages.obsidian]
+version = "1.5.0"
+pinned = true
+portable = { home = "~/.obsidian-data" }
 
-gh-cli = {
-   github = "cli/cli"
-   asset_pattern = "gh_*_linux_amd64.tar.gz"
- }
+[packages.gh-cli]
+github = "cli/cli"
+asset_pattern = "gh_*_linux_amd64.tar.gz"
 
-custom-tool = {
-  url = "https://example.com/tool-1.0.0.tar.gz"
-  build = {
-    commands = ["make -j$NPROC", "make install PREFIX=$INSTALL_DIR"]
-    dependencies = ["gcc", "make"]
-  }
-}
+[packages.custom-tool]
+url = "https://example.com/tool-1.0.0.tar.gz"
 
-untrusted-tool = {
-  url = "https://example.com/tool-1.0.0.tar.gz"
-  hooks = { post_install = "$INSTALL_DIR/setup.sh" }
-  sandbox = { require = true, network = false }
-}
+[packages.custom-tool.build]
+commands = ["make -j$NPROC", "make install PREFIX=$INSTALL_DIR"]
+dependencies = ["gcc", "make"]
+
+[packages.untrusted-tool]
+url = "https://example.com/tool-1.0.0.tar.gz"
+hooks = { post_install = "$INSTALL_DIR/setup.sh" }
+sandbox = { require = true, network = false }
 ```
 
 ## Applying Packages
@@ -483,7 +505,7 @@ soar apply
 | Dry run | `--dry-run` | Show what would be done without making changes |
 | Yes | `--yes` | Auto-confirm all prompts |
 | Config | `--packages <path>` | Use custom packages.toml path |
-| No verify | `--no-verify` | Skip signature verification (security risk) |
+| No verify | `--no-verify` | Skip checksum verification (security risk) |
 
 ### Pruning Unlisted Packages
 
