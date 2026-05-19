@@ -73,6 +73,8 @@ spinners = true
 
 ## Repositories
 
+> **Tip:** You can manage repositories from the command line with `soar repo add/update/remove/list`. See [Repository Management](./repo.md).
+
 Repositories are defined as arrays of tables in your configuration:
 
 ```toml

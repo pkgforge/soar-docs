@@ -16,6 +16,7 @@
     - [Use Package](./use.md)
     - [Run Package](./run.md)
     - [Inspect Packages](./inspection.md)
+- [Repository Management](./repo.md)
 - [Download Files](./download.md)
 - [Health](./health.md)
 - [Maintenance](./maintenance.md)
